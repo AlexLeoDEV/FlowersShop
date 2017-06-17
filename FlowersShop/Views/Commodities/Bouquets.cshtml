@@ -1,0 +1,59 @@
+﻿@model IEnumerable<FlowersShop.Models.ModelsInfoView>
+
+@{
+    ViewBag.Title = "Bouquets";
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Category.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Commodities.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Commodities.id_Commodities)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Commodities.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Commodities.Preferences)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Commodities.Price)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Category.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Commodities.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Commodities.id_Commodities)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.Commodities.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.Commodities.Preferences)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.Commodities.Price)
+        </td>
+        <td>
+            @Html.ActionLink("Details", "Details", new { id = item.Commodities.id_Commodities })
+        </td>
+    </tr>
+}
+</table>
+<div>
+    @Html.ActionLink("Back to Home", "Index", "Commodities")
+</div>
