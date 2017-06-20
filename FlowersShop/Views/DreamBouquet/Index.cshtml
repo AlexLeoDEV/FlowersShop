@@ -58,7 +58,7 @@
             <img style="height: 80px; width: 80px;" src="@Html.DisplayFor(modelItem => item.image)" />
         </div>
         <div class="col-md-1">
-            <a href="Orders/Create/@item.id_Commodities">Buy</a>
+            <a href="@Url.Action("Create", "Orders", new { id = item.id_Commodities })">Buy</a>
         </div>
         <div class="col-md-1">
             @Html.ActionLink(linkText: "Details", actionName: "Details", controllerName: "Commodities",

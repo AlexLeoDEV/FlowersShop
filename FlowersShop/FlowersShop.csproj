@@ -137,11 +137,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201706132155018_db.cs" />
-    <Compile Include="Migrations\201706132155018_db.Designer.cs">
-      <DependentUpon>201706132155018_db.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Logic\Services.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\City.cs" />
     <Compile Include="Models\Client.cs" />
@@ -280,16 +276,14 @@
     <Content Include="Views\DreamBouquet\Index.cshtml" />
     <Content Include="Views\Commodities\Details.cshtml" />
     <Content Include="Views\Commodities\Index.cshtml" />
-    <Content Include="Views\Commodities\Bouquets.cshtml" />
-    <Content Include="Views\Commodities\Baskets.cshtml" />
-    <Content Include="Views\Commodities\MonoBouquets.cshtml" />
-    <Content Include="Views\Commodities\Compositions.cshtml" />
+    <Content Include="Views\Commodities\GetBouquets.cshtml" />
+    <Content Include="Views\Commodities\GetBaskets.cshtml" />
+    <Content Include="Views\Commodities\GetMonoBouquets.cshtml" />
+    <Content Include="Views\Commodities\GetCompositions.cshtml" />
     <Content Include="Views\Orders\Create.cshtml" />
     <Content Include="Views\Orders\Delete.cshtml" />
-    <Content Include="Views\Orders\Details.cshtml" />
     <Content Include="Views\Orders\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -297,11 +291,6 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201706132155018_db.resx">
-      <DependentUpon>201706132155018_db.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

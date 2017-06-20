@@ -1,10 +1,10 @@
-namespace FlowersShop.Models
-{
-    using System;
-    using System.Data.Entity;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Linq;
+using System;
+using System.Data.Entity;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 
+namespace FlowersShop.Models
+{    
     public partial class FlowersShopModelContext : DbContext
     {
         public FlowersShopModelContext()

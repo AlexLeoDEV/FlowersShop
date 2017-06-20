@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using FlowersShop.Models;
+using FlowersShop.Logic;
 
 namespace FlowersShop.Controllers
 {
@@ -14,7 +15,6 @@ namespace FlowersShop.Controllers
     {
         private FlowersShopModelContext db = new FlowersShopModelContext();
 
-        // GET: Commodities
         public ActionResult Index(string selectedTitle, string selectedColour, string selectedPriceSort, string selectedCategory)
         {
             var commodities = from c in db.Commodities
@@ -23,40 +23,21 @@ namespace FlowersShop.Controllers
 
             commodities = commodities.OrderBy(p => p.Price);
 
-            if (!String.IsNullOrEmpty(selectedTitle))
-            {
-                if (!selectedTitle.Equals("All"))
-                {
-                    commodities = commodities.Where(c => c.Title.Equals(selectedTitle));
-                }                
-            }
+            commodities = Services.CheckFilter(selectedTitle) == true ?
+                commodities.Where(c => c.Title.Equals(selectedTitle)) : commodities;
 
-            if (!String.IsNullOrEmpty(selectedColour))
-            {
-                if (!selectedColour.Equals("All"))
-                {
-                    commodities = commodities.Where(c => c.Colour.Equals(selectedColour));
-                }
-            }
-            if (!String.IsNullOrEmpty(selectedPriceSort))
-            {
-                if (!selectedPriceSort.Equals("Ascending"))
-                {
-                    commodities = commodities.OrderByDescending(c => c.Price);
-                }
-            }
-            if (!String.IsNullOrEmpty(selectedCategory))
-            {
-                if (!selectedCategory.Equals("All"))
-                {
-                    commodities = commodities.Where(c => c.Preferences.Equals(selectedCategory));
-                }
-            }
+            commodities = Services.CheckFilter(selectedColour) == true ?
+                commodities.Where(c => c.Colour.Equals(selectedColour)) : commodities;
+
+            commodities = Services.CheckFilter(selectedColour) == true ?
+                commodities.OrderByDescending(c => c.Price) : commodities;
+
+            commodities = Services.CheckFilter(selectedCategory) == true ?
+                commodities.Where(c => c.Preferences.Equals(selectedCategory)) : commodities;
 
             return View(commodities);
         }
 
-        // GET: Commodities/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -71,7 +52,7 @@ namespace FlowersShop.Controllers
             return View(commodities);
         }        
 
-        public ActionResult Bouquets()
+        public ActionResult GetBouquets()
         {
             var result = from b in db.Category
                          join com in db.Commodities on b.id_Category equals com.id_Category
@@ -81,7 +62,7 @@ namespace FlowersShop.Controllers
             return View(result);
         }
 
-        public ActionResult Baskets()
+        public ActionResult GetBaskets()
         {
             var result = from b in db.Category
                          join com in db.Commodities on b.id_Category equals com.id_Category
@@ -91,7 +72,7 @@ namespace FlowersShop.Controllers
             return View(result);
         }
 
-        public ActionResult MonoBouquets()
+        public ActionResult GetMonoBouquets()
         {
             var result = from b in db.Category
                          join com in db.Commodities on b.id_Category equals com.id_Category
@@ -101,7 +82,7 @@ namespace FlowersShop.Controllers
             return View(result);
         }
 
-        public ActionResult Compositions()
+        public ActionResult GetCompositions()
         {
             var result = from b in db.Category
                          join com in db.Commodities on b.id_Category equals com.id_Category

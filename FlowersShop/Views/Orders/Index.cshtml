@@ -4,9 +4,9 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Your cart</h2>
+<h2>Index</h2>
 
-<table class="table"  style="margin-top: 40px; margin-bottom:25px;">
+<table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Client.Name)
@@ -56,8 +56,8 @@
             @Html.DisplayFor(modelItem => item.Address)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id_Order }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id_Order }) |
+            @Html.ActionLink(linkText: "Details", actionName: "Details", controllerName: "Commodities",
+                        routeValues: new { id = item.id_Commodities }, htmlAttributes: null)
             @Html.ActionLink("Delete", "Delete", new { id=item.id_Order })
         </td>
     </tr>
