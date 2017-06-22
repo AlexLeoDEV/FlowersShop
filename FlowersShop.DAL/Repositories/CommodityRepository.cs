@@ -43,8 +43,14 @@ namespace FlowersShop.DAL.Repositories
 
         public IEnumerable<Commodities> GetAll()
         {
-            return db.Commodities.ToList();
+            return db.Commodities.ToList();// Error here 
         }
+
+        //System.NotSupportedException occurred  Message=Model compatibility cannot be checked because 
+        //the database does not contain model metadata.Model compatibility can only be checked for databases 
+        //created using Code First or Code First Migrations. Source=<Cannot evaluate the exception source>
+        //StackTrace: <Cannot evaluate the exception stack trace>
+
 
         public void Update(Commodities item)
         {

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using FlowersShop.BLL.DTO;
 using FlowersShop.BLL.Interfaces;
+using FlowersShop.DAL.Entities;
 using FlowersShop.WEB.Models;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,8 @@ namespace FlowersShop.WEB.Controllers
             IEnumerable<CommodityDTO> commodDtos = commoditiesService.GetCommodities();
             Mapper.Initialize(cfg => cfg.CreateMap<CommodityDTO, CommodityViewModel>());
             var commodity = Mapper.Map<IEnumerable<CommodityDTO>, List<CommodityViewModel>>(commodDtos);
+
+
 
             return View(commodity);
         }

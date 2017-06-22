@@ -15,7 +15,7 @@ namespace FlowersShop.BLL.Services
 {
     public class CommoditiesService : ICommoditiesService
     {
-        IUnitOfWork Database { get; set; }
+        public IUnitOfWork Database { get; set; }
 
         public CommoditiesService(IUnitOfWork uow)
         {
@@ -52,7 +52,7 @@ namespace FlowersShop.BLL.Services
         public IEnumerable<CommodityDTO> GetCommodities()
         {
             Mapper.Initialize(cfg => cfg.CreateMap<Commodities, CommodityDTO>());
-            return Mapper.Map<IEnumerable<Commodities>, List<CommodityDTO>>(Database.Commodities.GetAll());
+            return Mapper.Map<IEnumerable<Commodities>, List<CommodityDTO>>(Database.Commodities.GetAll().Where(p => p.IsHandMade.Equals(false)));
         }
 
         public CommodityDTO GetCommodity(int? id)

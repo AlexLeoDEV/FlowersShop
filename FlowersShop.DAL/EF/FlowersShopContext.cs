@@ -15,10 +15,10 @@ namespace FlowersShop.DAL.EF
         {
         }
 
-        //public FlowersShopContext()
-        //    : base("name=FlowersShopModelContext")
-        //{
-        //}
+        public FlowersShopContext()
+            : base("name=FlowersShopContext")
+        {
+        }
         static FlowersShopContext()
         {
             Database.SetInitializer<FlowersShopContext>(new StoreDbInitializer());

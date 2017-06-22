@@ -10,6 +10,8 @@ namespace FlowersShop.WEB.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
+    using Ninject.Modules;
+    using FlowersShop.BLL.Infrastructure;
 
     public static class NinjectWebCommon 
     {
@@ -39,7 +41,9 @@ namespace FlowersShop.WEB.App_Start
         /// <returns>The created kernel.</returns>
         private static IKernel CreateKernel()
         {
-            var kernel = new StandardKernel();
+            var modules = new INinjectModule[] { new ServiceModule("FlowersShopContext") };
+            //var kernel = new StandardKernel();
+            var kernel = new StandardKernel(modules);
             try
             {
                 kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
