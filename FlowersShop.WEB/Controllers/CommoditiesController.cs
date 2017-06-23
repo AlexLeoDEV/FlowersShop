@@ -16,13 +16,17 @@ namespace FlowersShop.WEB.Controllers
     public class CommoditiesController : Controller
     {
         ICommoditiesService commoditiesService;
-        ICategoryService categoryService;
 
         public int pageSize = 4;
-        public CommoditiesController(ICommoditiesService srv, ICategoryService crv)
+
+        public CommoditiesController(ICommoditiesService srv)
         {
             commoditiesService = srv;
-            categoryService = crv;
+        }
+
+        public CommoditiesController()
+        {
+
         }
 
         public ViewResult Index(int page = 1)

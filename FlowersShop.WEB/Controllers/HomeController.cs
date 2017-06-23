@@ -1,4 +1,8 @@
-﻿using System;
+﻿using AutoMapper;
+using FlowersShop.BLL.DTO;
+using FlowersShop.BLL.Interfaces;
+using FlowersShop.WEB.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +12,24 @@ namespace FlowersShop.WEB.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        ICityService cityService;
+        public HomeController(ICityService csrv)
         {
+            cityService = csrv;
+        }
+        public ActionResult Services()
+        {
+            ViewBag.Message = "Our services";
             return View();
+        }
+
+        public ActionResult Delivering()
+        {
+            IEnumerable<CityDTO> cityDtos = cityService.GetCities();
+            Mapper.Initialize(cfg => cfg.CreateMap<CityDTO, CityViewModel>());
+            var cities = Mapper.Map<IEnumerable<CityDTO>, List<CityViewModel>>(cityDtos);
+
+            return View(cities.OrderBy(o => o.Title));
         }
 
         public ActionResult About()

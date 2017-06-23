@@ -33,8 +33,6 @@ namespace FlowersShop.WEB.Controllers
 
         public ActionResult Create(int? id)
         {
-
-
             IEnumerable<CommodityDTO> commodDtos = commoditiesService.GetCommodities();
             Mapper.Initialize(cfg => cfg.CreateMap<CommodityDTO, CommodityViewModel>());
             var commodities = Mapper.Map<IEnumerable<CommodityDTO>, List<CommodityViewModel>>(commodDtos);
