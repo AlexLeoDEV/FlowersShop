@@ -17,6 +17,7 @@ namespace FlowersShop.BLL.Interfaces
         void Update(CommodityDTO commodity);
         void Dispose();
         SelectList GetListCategories();
+        int GetCommoditiesQuantity();
         //IEnumerable<string> GetCommodityName();
     }
 }

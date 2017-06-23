@@ -1,0 +1,53 @@
+﻿@model IEnumerable<FlowersShop.WEB.Models.CommodityViewModel>
+
+@{
+    ViewBag.Title = "Bouquets";
+}
+
+<h2>Choose your bouquet</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Preferences)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th></th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Preferences)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Price)
+            </td>
+            <td>
+                <a href="@Url.Action("Create", "Orders", new { id = item.id_Commodities })">Buy</a>
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.id_Commodities })
+            </td>
+        </tr>
+    }
+</table>
+<div>
+    @Html.ActionLink("Back to Home", "Index", "Commodities")
+</div>

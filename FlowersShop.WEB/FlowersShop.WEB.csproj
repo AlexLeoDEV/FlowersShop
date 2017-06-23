@@ -165,13 +165,17 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CommoditiesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\PagingHelper.cs" />
+    <Compile Include="Models\Additional\PagingInfo.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="Models\CityViewModel.cs" />
     <Compile Include="Models\ClientViewModel.cs" />
     <Compile Include="Models\CommodityViewModel.cs" />
+    <Compile Include="Models\ModelsView.cs" />
     <Compile Include="Models\OrderViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\NinjectDependencyResolver.cs" />
@@ -218,6 +222,13 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Commodities\Index.cshtml" />
+    <Content Include="Views\Commodities\Details.cshtml" />
+    <Content Include="Views\Commodities\GetBouquets.cshtml" />
+    <Content Include="Views\Commodities\GetBaskets.cshtml" />
+    <Content Include="Views\Commodities\GetCompositions.cshtml" />
+    <Content Include="Views\Commodities\GetMonoBouquets.cshtml" />
+    <Content Include="Views\Order\Index.cshtml" />
+    <Content Include="Views\Order\Create.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

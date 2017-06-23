@@ -43,6 +43,7 @@ namespace FlowersShop.DAL.Repositories
 
         public IEnumerable<Order> GetAll()
         {
+
             return db.Orders.ToList();
         }
 

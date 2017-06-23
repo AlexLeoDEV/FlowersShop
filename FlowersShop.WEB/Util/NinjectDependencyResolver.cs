@@ -28,10 +28,10 @@ namespace FlowersShop.WEB.Util
         private void AddBindings()
         {
             kernel.Bind<ICommoditiesService>().To<CommoditiesService>();
-            //kernel.Bind<ICategoryService>().To<CategoryService>();
-            //kernel.Bind<IClientService>().To<ClientService>();
-            //kernel.Bind<IOrderService>().To<OrderService>();
-            //kernel.Bind<ICityService>().To<CityService>();
+            kernel.Bind<ICategoryService>().To<CategoryService>();
+            kernel.Bind<IClientService>().To<ClientService>();
+            kernel.Bind<IOrderService>().To<OrderService>();
+            kernel.Bind<ICityService>().To<CityService>();
         }
     }
 }

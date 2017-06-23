@@ -52,7 +52,7 @@ namespace FlowersShop.BLL.Services
         public IEnumerable<CommodityDTO> GetCommodities()
         {
             Mapper.Initialize(cfg => cfg.CreateMap<Commodities, CommodityDTO>());
-            return Mapper.Map<IEnumerable<Commodities>, List<CommodityDTO>>(Database.Commodities.GetAll().Where(p => p.IsHandMade.Equals(false)));
+            return Mapper.Map<IEnumerable<Commodities>, List<CommodityDTO>>(Database.Commodities.GetAll());
         }
 
         public CommodityDTO GetCommodity(int? id)
@@ -83,6 +83,12 @@ namespace FlowersShop.BLL.Services
         //    return comTitle;
         //}
 
+        public int GetCommoditiesQuantity()
+        {
+            Mapper.Initialize(cfg => cfg.CreateMap<Commodities, CommodityDTO>());
+            var quantity = Mapper.Map<IEnumerable<Commodities>, List<CommodityDTO>>(Database.Commodities.GetAll());
+            return quantity.Count; //need checking
+        }
         public SelectList GetListCategories()
         {
             SelectList categories = new SelectList(Database.Categories.GetAll(), "id_Category", "Title");

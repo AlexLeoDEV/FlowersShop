@@ -11,7 +11,6 @@ namespace FlowersShop.DAL.Entities
     [Table("Category")]
     public partial class Category
     {
-        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Category()
         {
             Commodities = new HashSet<Commodities>();
@@ -23,7 +22,6 @@ namespace FlowersShop.DAL.Entities
         [Required]
         public string Title { get; set; }
 
-        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Commodities> Commodities { get; set; }
     }
 }

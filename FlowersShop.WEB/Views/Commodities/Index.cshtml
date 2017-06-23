@@ -1,4 +1,6 @@
-﻿@model IEnumerable<FlowersShop.WEB.Models.CommodityViewModel>
+﻿@using FlowersShop.WEB.Helpers
+@using FlowersShop.WEB.Models
+@model CommoditiesFilter
 
 @{
     ViewBag.Title = "Index";
@@ -6,46 +8,27 @@
 
 <h2>Index</h2>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Colour)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Preferences)
-        </th>
+<div style="width: 100%; text-align: center; margin-bottom: 25px; margin-top: 8em;">
+    <a class="btn btn-md btn-default" href="@Url.Action("GetBouquets", "Commodities")">Bouquets</a>
+    <a class="btn btn-md btn-default" href="@Url.Action("GetBaskets", "Commodities")">Baskets</a>
+    <a class="btn btn-md btn-default" href="@Url.Action("GetMonoBouquets", "Commodities")">Mono Bouquets</a>
+    <a class="btn btn-md btn-default" href="@Url.Action("GetCompositions", "Commodities")">Compositions</a>
+</div>
 
-    </tr>
-
-    @foreach (var item in Model)
+    @foreach (var item in Model.Commodities)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Colour)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Preferences)
-            </td>
-
-        </tr>
+        <div>
+            <h4>
+                <span class="pull-right label label-info">@item.Price.ToString("# UAH")</span>
+            </h4>
+            <h3>@item.Title</h3>
+            <p>@item.Colour</p>
+            <p>@item.Description</p>
+            <p>@item.Preferences</p>
+            <img src="@item.image" />
+        </div>
+        <hr />
     }
-
-</table>
+    <div style="text-align: left">
+        @Html.PageLinks(Model.PagingInfo, x => Url.Action("Index", new { page = x }))
+    </div>

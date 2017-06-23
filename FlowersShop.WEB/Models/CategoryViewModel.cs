@@ -14,4 +14,12 @@ namespace FlowersShop.WEB.Models
         
         public ICollection<Commodities> Commodities { get; set; }
     }
+
+    public enum Categories
+    {
+        FlowerComposition = 1,
+        MonoBouquet = 2,
+        Bouquet = 3,
+        FlowerBasket = 4,
+    }
 }
