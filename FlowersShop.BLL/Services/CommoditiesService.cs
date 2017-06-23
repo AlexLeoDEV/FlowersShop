@@ -72,17 +72,6 @@ namespace FlowersShop.BLL.Services
             return Mapper.Map<Commodities, CommodityDTO>(com);
         }
 
-        //public IEnumerable<string> GetCommodityName()
-        //{
-        //    var com = Database.Commodities.GetAll();
-        //    List<string> comTitle = new List<string>();
-        //    foreach (var item in com)
-        //    {
-        //        comTitle.Add(item.Title);
-        //    }
-        //    return comTitle;
-        //}
-
         public int GetCommoditiesQuantity()
         {
             Mapper.Initialize(cfg => cfg.CreateMap<Commodities, CommodityDTO>());

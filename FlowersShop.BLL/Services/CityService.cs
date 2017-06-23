@@ -89,11 +89,5 @@ namespace FlowersShop.BLL.Services
             }
             return citTitle;
         }
-
-        //public SelectList GetListClients()
-        //{
-        //    SelectList clients = new SelectList(Database.Clients.GetAll(), new Client{ "id_Client", "Name", "CellPhone", "Email", "Gender", "Age", "id_City" });
-        //    return clients;
-        //}
     }
 }
