@@ -15,20 +15,46 @@
     <a class="btn btn-md btn-default" href="@Url.Action("GetCompositions", "Commodities")">Compositions</a>
 </div>
 
+<table class="table">
+    <tr>
+        <th>
+           Title
+        </th>
+        <th>
+            Description
+        </th>
+        <th>
+            Preferences
+        </th>
+        <th>
+            Price
+        </th>
+        <th></th>
+    </tr>
+
     @foreach (var item in Model.Commodities)
     {
-        <div>
-            <h4>
-                <span class="pull-right label label-info">@item.Price.ToString("# UAH")</span>
-            </h4>
-            <h3>@item.Title</h3>
-            <p>@item.Colour</p>
-            <p>@item.Description</p>
-            <p>@item.Preferences</p>
-            <img src="@item.image" />
-        </div>
-        <hr />
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Preferences)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Price)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.id_Commodities })
+            </td>
+        </tr>
     }
-    <div style="text-align: left">
-        @Html.PageLinks(Model.PagingInfo, x => Url.Action("Index", new { page = x }))
-    </div>
+</table>
+
+
+<div style="text-align: left">
+    @Html.PageLinks(Model.PagingInfo, x => Url.Action("Index", new { page = x }))
+</div>
