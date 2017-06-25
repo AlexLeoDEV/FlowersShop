@@ -12,6 +12,7 @@ namespace FlowersShop.BLL.Interfaces
     {
         CommodityDTO GetCommodity(int? id);
         IEnumerable<CommodityDTO> GetCommodities();
+        IEnumerable<CommodityDTO> GetNotHandMadeCommodities();
         void Create(CommodityDTO commodity);
         void Delete(int id);
         void Update(CommodityDTO commodity);

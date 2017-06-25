@@ -32,6 +32,7 @@ namespace FlowersShop.WEB.Util
             kernel.Bind<IClientService>().To<ClientService>();
             kernel.Bind<IOrderService>().To<OrderService>();
             kernel.Bind<ICityService>().To<CityService>();
+            kernel.Bind<ICommoditiesByCategory>().To<CommoditiesByCategoryService>();
         }
     }
 }

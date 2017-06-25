@@ -17,7 +17,7 @@ namespace FlowersShop.WEB.Controllers
     {
         ICommoditiesService commoditiesService;
 
-        public int pageSize = 4;
+        public int pageSize = 8;
 
         public CommoditiesController(ICommoditiesService srv)
         {
@@ -54,48 +54,10 @@ namespace FlowersShop.WEB.Controllers
             return View(model);
         }
 
-
-
         public ActionResult Details(int id)
         {
             var commodity = commoditiesService.GetCommodity(id);
             return View(commodity);
-        }
-
-        public ActionResult GetBouquets()
-        {
-            IEnumerable<CommodityDTO> commodDtos = commoditiesService.GetCommodities();
-            Mapper.Initialize(cfg => cfg.CreateMap<CommodityDTO, CommodityViewModel>());
-            var commodity = Mapper.Map<IEnumerable<CommodityDTO>, List<CommodityViewModel>>(commodDtos);
-
-            return View(commodity.Where(p => p.IsHandMade.Equals(false) && p.Title.Equals("Bouquets")).OrderBy(p => p.Price));
-        }
-
-        public ActionResult GetBaskets()
-        {
-            IEnumerable<CommodityDTO> commodDtos = commoditiesService.GetCommodities();
-            Mapper.Initialize(cfg => cfg.CreateMap<CommodityDTO, CommodityViewModel>());
-            var commodity = Mapper.Map<IEnumerable<CommodityDTO>, List<CommodityViewModel>>(commodDtos);
-
-            return View(commodity.Where(p => p.IsHandMade.Equals(false) && p.Title.Equals("Baskets")).OrderBy(p => p.Price));
-        }
-
-        public ActionResult GetCompositions()
-        {
-            IEnumerable<CommodityDTO> commodDtos = commoditiesService.GetCommodities();
-            Mapper.Initialize(cfg => cfg.CreateMap<CommodityDTO, CommodityViewModel>());
-            var commodity = Mapper.Map<IEnumerable<CommodityDTO>, List<CommodityViewModel>>(commodDtos);
-
-            return View(commodity.Where(p => p.IsHandMade.Equals(false) && p.Title.Equals("Composition")).OrderBy(p => p.Price));
-        }
-
-        public ActionResult GetMonoBouquets()
-        {
-            IEnumerable<CommodityDTO> commodDtos = commoditiesService.GetCommodities();
-            Mapper.Initialize(cfg => cfg.CreateMap<CommodityDTO, CommodityViewModel>());
-            var commodity = Mapper.Map<IEnumerable<CommodityDTO>, List<CommodityViewModel>>(commodDtos);
-
-            return View(commodity.Where(p => p.IsHandMade.Equals(false) && p.Title.Equals("Mono Bouquets")).OrderBy(p => p.Price));
-        }
+        }                
     }
 }

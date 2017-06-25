@@ -5,6 +5,7 @@ using FlowersShop.WEB.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -15,11 +16,12 @@ namespace FlowersShop.WEB.Controllers
         IOrderService orderService;
         ICommoditiesService commoditiesService;
         IClientService clientService;
-        public OrderController(IOrderService orv, ICommoditiesService csr, IClientService clsr)
+        int clientId = 1;
+        public OrderController(IOrderService orv, ICommoditiesService csrv, IClientService clisrv)
         {
             orderService = orv;
-            commoditiesService = csr;
-            clientService = clsr;
+            commoditiesService = csrv;
+            clientService = clisrv;
         }
 
         public ActionResult Index()
@@ -31,24 +33,18 @@ namespace FlowersShop.WEB.Controllers
             return View(order);
         }
 
-        public ActionResult Create(int? id)
+        public ActionResult Buy(int? id)
         {
-            IEnumerable<CommodityDTO> commodDtos = commoditiesService.GetCommodities();
-            Mapper.Initialize(cfg => cfg.CreateMap<CommodityDTO, CommodityViewModel>());
-            var commodities = Mapper.Map<IEnumerable<CommodityDTO>, List<CommodityViewModel>>(commodDtos);
-           
-            var com = from c in commodities
-                              where c.id_Commodities.Equals(id)
-                              select c;
-
-            ViewBag.id_Client = new SelectList(clientService.GetClientName(), "id_Client", "Name");
-            ViewBag.id_Commodities = new SelectList(com, "id_Commodities", "Title");
-            ViewBag.FullPrice = new SelectList(com, "Price", "Price");
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            
             return View();
         }
 
         [HttpPost]
-        public ActionResult Create([Bind(Include = "id_Order,id_Commodities,OrderTime,Quantity,FullPrice,id_Client,Receiver,Address")] OrderDTO order)
+        public ActionResult Buy([Bind(Include = "id_Order,id_Commodities,OrderTime,Quantity,FullPrice,id_Client,Receiver,Address")] OrderDTO order)
         {
             order.OrderTime = DateTime.Now;
             orderService.Create(order);

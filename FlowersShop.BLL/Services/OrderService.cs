@@ -77,7 +77,8 @@ namespace FlowersShop.BLL.Services
         public IEnumerable<OrderDTO> GetOrders()
         {
             Mapper.Initialize(cfg => cfg.CreateMap<Order, OrderDTO>());
-            return Mapper.Map<IEnumerable<Order>, List<OrderDTO>>(Database.Orders.GetAll());
+            var res = Mapper.Map<IEnumerable<Order>, List<OrderDTO>>(Database.Orders.GetAll());
+            return res;
         }
 
         public void Update(OrderDTO order)

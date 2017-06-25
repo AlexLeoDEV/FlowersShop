@@ -163,6 +163,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CommoditiesByCategoryController.cs" />
     <Compile Include="Controllers\CommoditiesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
@@ -175,7 +176,7 @@
     <Compile Include="Models\CityViewModel.cs" />
     <Compile Include="Models\ClientViewModel.cs" />
     <Compile Include="Models\CommodityViewModel.cs" />
-    <Compile Include="Models\ModelsView.cs" />
+    <Compile Include="Models\CommoditiesByCategoryViewModel.cs" />
     <Compile Include="Models\OrderViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\NinjectDependencyResolver.cs" />
@@ -317,14 +318,15 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Commodities\Index.cshtml" />
     <Content Include="Views\Commodities\Details.cshtml" />
-    <Content Include="Views\Commodities\GetBouquets.cshtml" />
-    <Content Include="Views\Commodities\GetBaskets.cshtml" />
-    <Content Include="Views\Commodities\GetCompositions.cshtml" />
-    <Content Include="Views\Commodities\GetMonoBouquets.cshtml" />
     <Content Include="Views\Order\Index.cshtml" />
-    <Content Include="Views\Order\Create.cshtml" />
+    <Content Include="Views\Order\Buy.cshtml" />
     <Content Include="Views\Home\Delivering.cshtml" />
     <Content Include="Views\Home\Services.cshtml" />
+    <Content Include="Views\CommoditiesByCategory\GetBouquets.cshtml" />
+    <Content Include="Views\CommoditiesByCategory\GetBaskets.cshtml" />
+    <Content Include="Views\CommoditiesByCategory\GetMonoBouquets.cshtml" />
+    <Content Include="Views\CommoditiesByCategory\GetCompositions.cshtml" />
+    <Content Include="Views\CommoditiesByCategory\GetDreamBouquet.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -42,7 +42,7 @@ namespace FlowersShop.Tests.Controllers
             var commodity = 25;
 
             //Act
-            var mock = new Mock<ICommoditiesService>();            
+            var mock = new Mock<ICommoditiesService>();
             mock.Setup(a => a.GetCommodity(commodity));
             var result = new CommoditiesController(mock.Object);
 
