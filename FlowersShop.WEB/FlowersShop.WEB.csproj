@@ -181,10 +181,6 @@
     <Compile Include="Util\NinjectDependencyResolver.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\ShopDB.mdf" />
-    <Content Include="App_Data\ShopDB_log.ldf">
-      <DependentUpon>ShopDB.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\Comodities\Basket\bas1.jpg" />
@@ -327,7 +323,9 @@
     <Content Include="Views\CommoditiesByCategory\GetCompositions.cshtml" />
     <Content Include="Views\CommoditiesByCategory\GetDreamBouquet.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
   </ItemGroup>
