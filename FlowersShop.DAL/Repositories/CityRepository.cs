@@ -24,11 +24,8 @@ namespace FlowersShop.DAL.Repositories
 
         public void Delete(int id)
         {
-            City City = db.Cities.Find(id);
-            if (City != null)
-            {
-                db.Cities.Remove(City);
-            }
+            City City = db.Cities.Find(id);            
+            db.Cities.Remove(City);
         }
 
         public IEnumerable<City> Find(Func<City, bool> predicate)

@@ -50,7 +50,6 @@ namespace FlowersShop.BLL.Services
             {
                 id_City = city.id_City,
                 Title = city.Title,
-                id_Client = city.id_Client,
                 Price = city.Price
             });
             Database.Save();
@@ -68,7 +67,6 @@ namespace FlowersShop.BLL.Services
             {
                 id_City = city.id_City,
                 Title = city.Title,
-                id_Client = city.id_Client,
                 Price = city.Price
             });
             Database.Save();

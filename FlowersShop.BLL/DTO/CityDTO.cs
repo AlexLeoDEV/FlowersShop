@@ -16,9 +16,5 @@ namespace FlowersShop.BLL.DTO
         public string Title { get; set; }
 
         public decimal Price { get; set; }
-
-        public int? id_Client { get; set; }
-
-        public ICollection<ClientDTO> Client { get; set; }
     }
 }

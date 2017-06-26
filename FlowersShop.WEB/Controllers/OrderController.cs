@@ -16,7 +16,6 @@ namespace FlowersShop.WEB.Controllers
         IOrderService orderService;
         ICommoditiesService commoditiesService;
         IClientService clientService;
-        int clientId = 1;
         public OrderController(IOrderService orv, ICommoditiesService csrv, IClientService clisrv)
         {
             orderService = orv;

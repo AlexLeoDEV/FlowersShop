@@ -25,11 +25,11 @@ namespace FlowersShop.WEB.Controllers
 
         public ActionResult Delivering()
         {
-            IEnumerable<CityDTO> cityDtos = cityService.GetCities();
-            Mapper.Initialize(cfg => cfg.CreateMap<CityDTO, CityViewModel>());
-            var cities = Mapper.Map<IEnumerable<CityDTO>, List<CityViewModel>>(cityDtos);
+           var cityDtos = cityService.GetCities();
+            //Mapper.Initialize(cfg => cfg.CreateMap<CityDTO, CityViewModel>());
+            //var cities = Mapper.Map<IEnumerable<CityDTO>, List<CityViewModel>>(cityDtos);
 
-            return View(cities.OrderBy(o => o.Title));
+            return View(cityDtos);
         }
 
         public ActionResult About()

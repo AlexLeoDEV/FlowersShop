@@ -11,11 +11,6 @@ namespace FlowersShop.DAL.Entities
     [Table("City")]
     public class City
     {
-        public City()
-        {
-            Client = new HashSet<Client>();
-        }
-
         [Key]
         public int id_City { get; set; }
 
@@ -25,9 +20,5 @@ namespace FlowersShop.DAL.Entities
 
         [Column(TypeName = "money")]
         public decimal Price { get; set; }
-
-        public int? id_Client { get; set; }
-
-        public virtual ICollection<Client> Client { get; set; }
     }
 }
