@@ -90,11 +90,6 @@ namespace FlowersShop.BLL.Services
             var quantity = Mapper.Map<IEnumerable<Commodities>, List<CommodityDTO>>(Database.Commodities.GetAll());
             return quantity.Count;
         }
-        public SelectList GetListCategories()
-        {
-            SelectList categories = new SelectList(Database.Categories.GetAll(), "id_Category", "Title");
-            return categories;
-        }
 
         public void Update(CommodityDTO commodity)
         {

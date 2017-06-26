@@ -82,6 +82,7 @@
   <ItemGroup>
     <Compile Include="Controllers\CommoditiesControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="BLL\CommoditiesServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
