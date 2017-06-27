@@ -83,16 +83,5 @@ namespace FlowersShop.BLL.Services
         {
             Database.Dispose();
         }
-
-        public IEnumerable<string> GetClientName()
-        {
-            var cli = Database.Clients.GetAll();
-            List<string> cliName = new List<string>();
-            foreach (var item in cli)
-            {
-                cliName.Add(item.Name);
-            }
-            return cliName;
-        }
     }
 }

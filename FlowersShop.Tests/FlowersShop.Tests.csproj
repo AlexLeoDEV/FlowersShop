@@ -80,6 +80,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\CategoryServiceTests.cs" />
+    <Compile Include="BLL\CityServiceTests.cs" />
+    <Compile Include="BLL\ClientServiceTests.cs" />
+    <Compile Include="BLL\OrderServiceTests.cs" />
     <Compile Include="Controllers\CommoditiesControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BLL\CommoditiesServiceTests.cs" />

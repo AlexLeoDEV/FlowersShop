@@ -31,11 +31,6 @@ namespace FlowersShop.DAL.Repositories
             }
         }
 
-        public IEnumerable<Client> Find(Func<Client, bool> predicate)
-        {
-            return db.Clients.Where(predicate).ToList();
-        }
-
         public Client Get(int id)
         {
             return db.Clients.Find(id);

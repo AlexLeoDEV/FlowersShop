@@ -28,11 +28,6 @@ namespace FlowersShop.DAL.Repositories
             db.Cities.Remove(City);
         }
 
-        public IEnumerable<City> Find(Func<City, bool> predicate)
-        {
-            return db.Cities.Where(predicate).ToList();
-        }
-
         public City Get(int id)
         {
             return db.Cities.Find(id);

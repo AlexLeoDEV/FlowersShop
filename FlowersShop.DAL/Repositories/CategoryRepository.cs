@@ -31,11 +31,6 @@ namespace FlowersShop.DAL.Repositories
             }
         }
 
-        public IEnumerable<Category> Find(Func<Category, bool> predicate)
-        {
-            return db.Categories.Where(predicate).ToList();
-        }
-
         public Category Get(int id)
         {
             return db.Categories.Find(id);

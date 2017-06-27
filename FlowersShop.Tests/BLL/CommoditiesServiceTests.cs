@@ -12,20 +12,37 @@ namespace FlowersShop.Tests
     [TestClass]
     public class CommoditiesServiceTests
     {
-        private CommoditiesService service;
+        private CommoditiesService commService;
 
         [TestMethod]
-        public void GetAll_returns_all_entities()
+        public void GetCommodities_returns_all_entities()
         {
             //Arrange
             var mock = new Mock<IUnitOfWork>();
             mock.Setup(c => c.Commodities.GetAll()).Returns(new List<Commodities>());
 
             //Act
-            service = new CommoditiesService(mock.Object);
-            var result = service.GetCommodities();
+            commService = new CommoditiesService(mock.Object);
+            var result = commService.GetCommodities();
 
+            //Assert
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public void GetCommodity_returns_item()
+        {
             //Arrange
+            var commodityId = 7;
+            var mock = new Mock<IUnitOfWork>();
+
+            //Act
+            mock.Setup(a => a.Commodities.Get(commodityId)).Returns(new Commodities());
+            commService = new CommoditiesService(mock.Object);
+
+            var result = commService.GetCommodity(commodityId);
+
+            //Assert
             Assert.IsNotNull(result);
         }
     }

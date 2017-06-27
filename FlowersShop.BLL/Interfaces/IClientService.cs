@@ -15,6 +15,5 @@ namespace FlowersShop.BLL.Interfaces
         void Delete(int id);
         void Update(ClientDTO client);
         void Dispose();
-        IEnumerable<string> GetClientName();
     }
 }
