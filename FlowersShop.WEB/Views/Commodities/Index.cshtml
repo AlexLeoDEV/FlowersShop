@@ -51,6 +51,9 @@
             <td>
                 @Html.ActionLink("Details", "Details", new { id = item.id_Commodities })
             </td>
+            <td>
+                <a href="@Url.Action("Buy", "Order", new { id = item.id_Commodities })">Buy</a>
+            </td>
         </tr>
     }
 </table>

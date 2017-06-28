@@ -38,8 +38,17 @@ namespace FlowersShop.WEB.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            
-            return View();
+            var commodity = commoditiesService.GetCommodity(id);
+
+            OrderViewModel model = new OrderViewModel
+            {
+                id_Commodities = commodity.id_Commodities,
+                Quantity = 1,
+                FullPrice = commodity.Price,
+                Receiver = "Enter your receiver name",
+                Address = "Enter address of your receiver"
+            };
+            return View(model);
         }
 
         [HttpPost]

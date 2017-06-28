@@ -17,6 +17,16 @@ namespace FlowersShop.Tests.BLL
     public class ClientServiceTests
     {
         private ClientService clientService;
+        ClientDTO newClient = new ClientDTO
+        {
+            id_Client = 2,
+            Name = "Petro",
+            CellPhone = "0995566445",
+            Email = "email@hot.org",
+            Gender = "Male",
+            Age = 42,
+            id_City = 1
+        };
 
         [TestMethod]
         public void GetClients_return_all_entities()
@@ -54,51 +64,80 @@ namespace FlowersShop.Tests.BLL
         public void Create_client_succeeded()
         {
             //Arrange
-            var mock = new Mock<IClientService>();
-            var newClient = new ClientDTO
-            {
-                id_Client = 2,
-                Name = "Petro",
-                CellPhone = "0995566445",
-                Email = "email@hot.org",
-                Gender = "Male",
-                Age = 42,
-                id_City = 1
-            };
+            bool IsErrorOccured = true;
+            var mock = new Mock<IUnitOfWork>();            
            
-            //Act and Arrange
-            mock.Setup(c => c.Create(newClient)).Verifiable();
+            //Act 
+            mock.Setup(c => c.Clients.Create(It.Is<Client>(cl => (cl.id_Client == newClient.id_Client) &&
+                                                        (cl.Name == newClient.Name) &&
+                                                        (cl.CellPhone == newClient.CellPhone) &&
+                                                        (cl.Email == newClient.Email) &&
+                                                        (cl.Gender == newClient.Gender) &&
+                                                        (cl.Age == newClient.Age) &&
+                                                        (cl.id_City == newClient.id_City)
+                                                  ))).Callback(() => IsErrorOccured = false);
+
+            clientService = new ClientService(mock.Object);
+            clientService.Create(newClient);
+
+            //Arrange
+            Assert.IsFalse(IsErrorOccured);
         }
 
         [TestMethod]
         public void Update_client_succeeded()
         {
             //Arrange
-            var mock = new Mock<IClientService>();
-            var newClient = new ClientDTO
-            {
-                id_Client = 2,
-                Name = "Petro",
-                CellPhone = "0995566445",
-                Email = "email@hot.org",
-                Gender = "Male",
-                Age = 42,
-                id_City = 1
-            };
+            bool IsErrorOccured = true;
+            var mock = new Mock<IUnitOfWork>();
 
-            //Act and Arrange
-            mock.Setup(c => c.Update(newClient)).Verifiable();
+            //Act 
+            mock.Setup(c => c.Clients.Update(It.Is<Client>(cl => (cl.id_Client == newClient.id_Client) &&
+                                                        (cl.Name == newClient.Name) &&
+                                                        (cl.CellPhone == newClient.CellPhone) &&
+                                                        (cl.Email == newClient.Email) &&
+                                                        (cl.Gender == newClient.Gender) &&
+                                                        (cl.Age == newClient.Age) &&
+                                                        (cl.id_City == newClient.id_City)
+                                                  ))).Callback(() => IsErrorOccured = false);
+            clientService = new ClientService(mock.Object);
+            clientService.Update(newClient);
+
+            //Arrange
+            Assert.IsFalse(IsErrorOccured);
         }
 
         [TestMethod]
         public void Delete_client_succeeded()
         {
             //Arrange
-            var mock = new Mock<IClientService>();
-            var clientID = 1;
+            bool IsErrorOccured = true;
+            var mock = new Mock<IUnitOfWork>();
+            var clientId = 1;
 
             //Act and Arrange
-            mock.Setup(c => c.Delete(clientID)).Verifiable();
+            mock.Setup(c => c.Clients.Delete(clientId)).Callback(() => IsErrorOccured = false);
+            clientService = new ClientService(mock.Object);
+            clientService.Delete(clientId);
+
+            //Arrange
+            Assert.IsFalse(IsErrorOccured);
+        }
+
+        [TestMethod]
+        public void Dispose_client_succeeded()
+        {
+            //Arrange
+            bool IsErrorOccured = true;
+            var mock = new Mock<IUnitOfWork>();
+
+            //Act
+            mock.Setup(c => c.Dispose()).Callback(() => IsErrorOccured = false);
+            clientService = new ClientService(mock.Object);
+            clientService.Dispose();
+
+            //Assert
+            Assert.IsFalse(IsErrorOccured);
         }
     }
 }

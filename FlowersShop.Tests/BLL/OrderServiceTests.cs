@@ -1,4 +1,5 @@
-﻿using FlowersShop.BLL.Services;
+﻿using FlowersShop.BLL.DTO;
+using FlowersShop.BLL.Services;
 using FlowersShop.DAL.Entities;
 using FlowersShop.DAL.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -46,6 +47,39 @@ namespace FlowersShop.Tests.BLL
 
             //Assert
             Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public void Delete_order_succeeded()
+        {
+            //Arrange
+            bool IsErrorOccured = true;
+            var mock = new Mock<IUnitOfWork>();
+            var orderId = 7;
+
+            //Act and Arrange
+            mock.Setup(c => c.Orders.Delete(orderId)).Callback(() => IsErrorOccured = false);
+            ordersService = new OrderService(mock.Object);
+            ordersService.Delete(orderId);
+
+            //Arrange
+            Assert.IsFalse(IsErrorOccured);
+        }
+
+        [TestMethod]
+        public void Dispose_order_succeeded()
+        {
+            //Arrange
+            bool IsErrorOccured = true;
+            var mock = new Mock<IUnitOfWork>();
+
+            //Act
+            mock.Setup(c => c.Dispose()).Callback(() => IsErrorOccured = false);
+            ordersService = new OrderService(mock.Object);
+            ordersService.Dispose();
+
+            //Assert
+            Assert.IsFalse(IsErrorOccured);
         }
     }
 }
