@@ -16,10 +16,27 @@
     <a class="btn btn-md btn-default" href="@Url.Action("GetDreamBouquet", "CommoditiesByCategory")">Create own bouquet</a>
 </div>
 
+<div class="container" style="margin-top: 40px; margin-bottom:25px;">
+    <div class="row">
+        @using (Html.BeginForm("Index", "Commodities", FormMethod.Get))
+        {
+            <div class="col-lg-4" style="width: 13%; padding-left: 4%">
+                @Html.DropDownList("selectedColour", new SelectList(new string[] { "All", "Mixed", "Pink", "White", "Yellow", "Blue", "Red" }))
+            </div>
+            <div class="col-lg-4">
+                <input class="btn-lg btn-xs" type="submit" value="apply" />
+            </div>
+        }
+    </div>
+</div>
+
 <table class="table">
     <tr>
         <th>
-           Title
+            Title
+        </th>
+        <th>
+            Colour
         </th>
         <th>
             Description
@@ -34,10 +51,13 @@
     </tr>
 
     @foreach (var item in Model.Commodities)
-    {
+            {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Colour)
             </td>
             <td>
                 @Html.DisplayFor(model => item.Description)
@@ -60,5 +80,5 @@
 
 
 <div style="text-align: left">
-    @Html.PageLinks(Model.PagingInfo, x => Url.Action("Index", new { page = x }))
+    @Html.PageLinks(Model.PgInfo, x => Url.Action("Index", new { page = x }))
 </div>

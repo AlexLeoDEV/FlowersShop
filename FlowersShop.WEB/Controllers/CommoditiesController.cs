@@ -2,6 +2,7 @@
 using FlowersShop.BLL.DTO;
 using FlowersShop.BLL.Interfaces;
 using FlowersShop.DAL.Entities;
+using FlowersShop.WEB.Code;
 using FlowersShop.WEB.Models;
 using FlowersShop.WEB.Models.Additional;
 using System;
@@ -29,21 +30,24 @@ namespace FlowersShop.WEB.Controllers
 
         }
 
-        public ViewResult Index(int page = 1)
+        public ViewResult Index(string selectedColour, int page = 1)
         {
-            IEnumerable<CommodityDTO> commodDtos = commoditiesService.GetCommodities()
-                    .OrderBy(item => item.id_Commodities)
-                    .Skip((page - 1) * pageSize)
-                    .Take(pageSize);
+            IEnumerable<CommodityDTO> commodDtos = commoditiesService.GetCommodities();                 
             Mapper.Initialize(cfg => cfg.CreateMap<CommodityDTO, CommodityViewModel>());
             var commodity = Mapper.Map<IEnumerable<CommodityDTO>, List<CommodityViewModel>>(commodDtos);
+            IEnumerable<CommodityViewModel> commoditiesList;
 
+            commoditiesList = FilterService.CheckFilter(selectedColour) == true ?
+                commodity.OrderBy(p => p.Price).Where(c => c.Colour.Equals(selectedColour)) : 
+                commodity.OrderBy(p => p.Price);
 
             CommoditiesFilter model = new CommoditiesFilter
             {
-                Commodities = commodity.OrderBy(p => p.Price),
+                Commodities = commoditiesList.OrderBy(item => item.id_Commodities)
+                    .Skip((page - 1) * pageSize)
+                    .Take(pageSize),
 
-                PagingInfo = new PagingInfo
+                PgInfo = new PagingInfo
                 {
                     CurrentPage = page,
                     ItemsPerPage = pageSize,

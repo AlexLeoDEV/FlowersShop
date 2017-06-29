@@ -24,12 +24,14 @@ namespace FlowersShop.Tests.Controllers
         public void Index_view_result_not_null()
         {
             // Arrange
+            string colours = "All";
+            int page = 1;
             var mock = new Mock<ICommoditiesService>();
             mock.Setup(a => a.GetCommodities()).Returns(new List<CommodityDTO>());
             controller = new CommoditiesController(mock.Object);
 
             // Act
-            var result = controller.Index() as ViewResult;
+            var result = controller.Index(colours, page) as ViewResult;
 
             // Assert
             Assert.IsNotNull(result);

@@ -163,6 +163,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Code\FilterService.cs" />
     <Compile Include="Controllers\CommoditiesByCategoryController.cs" />
     <Compile Include="Controllers\CommoditiesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -311,7 +312,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Commodities\Index.cshtml" />
     <Content Include="Views\Commodities\Details.cshtml" />
     <Content Include="Views\Order\Index.cshtml" />
     <Content Include="Views\Home\Delivering.cshtml" />
@@ -321,6 +321,7 @@
     <Content Include="Views\CommoditiesByCategory\GetMonoBouquets.cshtml" />
     <Content Include="Views\CommoditiesByCategory\GetCompositions.cshtml" />
     <Content Include="Views\CommoditiesByCategory\GetDreamBouquet.cshtml" />
+    <Content Include="Views\Commodities\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,11 +1,6 @@
 ﻿using FlowersShop.DAL.Entities;
 using FlowersShop.WEB.Models.Additional;
-using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Web;
 
 namespace FlowersShop.WEB.Models
 {
@@ -33,10 +28,9 @@ namespace FlowersShop.WEB.Models
 
         public ICollection<Order> Order { get; set; }
     }
-
     public class CommoditiesFilter
     {
         public IEnumerable<CommodityViewModel> Commodities { get; set; }
-        public PagingInfo PagingInfo { get; set; }
+        public PagingInfo PgInfo { get; set; }
     }
 }
