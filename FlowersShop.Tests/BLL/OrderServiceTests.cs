@@ -18,7 +18,7 @@ namespace FlowersShop.Tests.BLL
         private OrderService ordersService;
 
         [TestMethod]
-        public void GetCategories_returns_all_entities()
+        public void GetOrders_returns_all_entities()
         {
             //Arrange
             var mock = new Mock<IUnitOfWork>();
@@ -33,7 +33,7 @@ namespace FlowersShop.Tests.BLL
         }
 
         [TestMethod]
-        public void GetCategory_returns_item()
+        public void GetOrder_returns_item()
         {
             //Arrange
             var orderId = 2;

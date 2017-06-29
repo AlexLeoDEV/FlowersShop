@@ -322,6 +322,8 @@
     <Content Include="Views\CommoditiesByCategory\GetCompositions.cshtml" />
     <Content Include="Views\CommoditiesByCategory\GetDreamBouquet.cshtml" />
     <Content Include="Views\Commodities\Index.cshtml" />
+    <Content Include="Views\Order\Buy.cshtml" />
+    <Content Include="Views\Order\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

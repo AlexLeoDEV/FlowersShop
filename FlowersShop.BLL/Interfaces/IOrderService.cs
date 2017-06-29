@@ -15,6 +15,5 @@ namespace FlowersShop.BLL.Interfaces
         void Delete(int id);
         void Update(OrderDTO order);
         void Dispose();
-        IEnumerable<string> GetOrderName();
     }
 }

@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<FlowersShop.BLL.DTO.CommoditiesByCategoryDTO>
 
 @{
-    ViewBag.Title = "GetBaskets";
+    ViewBag.Title = "Baskets";
 }
 
-<h2>GetBaskets</h2>
+<h2>Baskets</h2>
 
 <table class="table">
     <tr>
@@ -40,10 +40,10 @@
                 @Html.DisplayFor(model => item.CommodityDTO.Price)
             </td>
             <td>
-                <a href="@Url.Action("Create", "Orders", new { id = item.CommodityDTO.id_Commodities })">Buy</a>
+                <a href="@Url.Action("Details", "Commodities", new { id = item.CommodityDTO.id_Commodities })">Details</a>
             </td>
             <td>
-                <a href="@Url.Action("Details", "Commodities", new { id = item.CommodityDTO.id_Commodities })">Details</a>
+                <a href="@Url.Action("Buy", "Order", new { id = item.CommodityDTO.id_Commodities })">Buy</a>
             </td>
         </tr>
     }

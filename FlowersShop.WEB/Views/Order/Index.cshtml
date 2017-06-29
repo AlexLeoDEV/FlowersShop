@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Your items</h2>
 
 <table class="table">
     <tr>
@@ -45,8 +45,6 @@
                 @Html.DisplayFor(modelItem => item.Address)
             </td>
             <td>
-                @Html.ActionLink(linkText: "Details", actionName: "Details", controllerName: "Commodities",
-                        routeValues: new { id = item.id_Commodities }, htmlAttributes: null)
                 @Html.ActionLink("Delete", "Delete", new { id = item.id_Order })
             </td>
         </tr>
@@ -54,3 +52,6 @@
 
 </table>
 
+<div>
+    @Html.ActionLink("Back to Home", "Index", "Commodities")
+</div>

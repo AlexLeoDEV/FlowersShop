@@ -63,17 +63,6 @@ namespace FlowersShop.BLL.Services
             return Mapper.Map<Order, OrderDTO>(cit);
         }
 
-        public IEnumerable<string> GetOrderName()
-        {
-            var ord = Database.Orders.GetAll();
-            List<string> ordTitle = new List<string>();
-            foreach (var item in ord)
-            {
-                ordTitle.Add(item.Receiver);
-            }
-            return ordTitle;
-        }
-
         public IEnumerable<OrderDTO> GetOrders()
         {
             Mapper.Initialize(cfg => cfg.CreateMap<Order, OrderDTO>());

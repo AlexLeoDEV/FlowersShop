@@ -12,13 +12,14 @@
         <div class="container" style="text-align: right;">
             <div class="registration-panel" style="margin: 0, 5px;">
                 <a href="#">Register</a>
+                |
                 <a href="#">Login</a>
             </div>
         </div>
     </header>
     <div class="container">
         <div class="jumbotron" style="background-color: #efecdb; padding-top:15px; height: 13em">
-            <p style="text-align:right; font-size:0.8em;"><a href="#" class="glyphicon glyphicon-shopping-cart">Cart</a></p>
+            <p style="text-align:right; font-size:0.8em;"><a href="@Url.Action("Index","Order")" class="glyphicon glyphicon-shopping-cart">Cart</a></p>
             <h1>@Html.ActionLink("Flowering", "Index", "Commodities")</h1>
             <p class="lead">Welcome to our shop!</p>
         </div>

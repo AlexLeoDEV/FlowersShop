@@ -15,12 +15,10 @@ namespace FlowersShop.WEB.Controllers
     {
         IOrderService orderService;
         ICommoditiesService commoditiesService;
-        IClientService clientService;
-        public OrderController(IOrderService orv, ICommoditiesService csrv, IClientService clisrv)
+        public OrderController(IOrderService orv, ICommoditiesService csrv)
         {
             orderService = orv;
             commoditiesService = csrv;
-            clientService = clisrv;
         }
 
         public ActionResult Index()
@@ -44,18 +42,41 @@ namespace FlowersShop.WEB.Controllers
             {
                 id_Commodities = commodity.id_Commodities,
                 Quantity = 1,
-                FullPrice = commodity.Price,
-                Receiver = "Enter your receiver name",
-                Address = "Enter address of your receiver"
+                FullPrice = commodity.Price
             };
+
             return View(model);
         }
 
         [HttpPost]
-        public ActionResult Buy([Bind(Include = "id_Order,id_Commodities,OrderTime,Quantity,FullPrice,id_Client,Receiver,Address")] OrderDTO order)
+        public ActionResult Buy(OrderDTO order)
         {
+            order.id_Client = 1;
             order.OrderTime = DateTime.Now;
             orderService.Create(order);
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var order = orderService.GetOrder(id);
+            if (order == null)
+            {
+                return HttpNotFound();
+            }
+            return View(order);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            var order = orderService.GetOrder(id);
+            orderService.Delete(id);
             return RedirectToAction("Index");
         }
     }

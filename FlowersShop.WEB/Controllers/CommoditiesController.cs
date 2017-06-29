@@ -8,6 +8,7 @@ using FlowersShop.WEB.Models.Additional;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -38,8 +39,7 @@ namespace FlowersShop.WEB.Controllers
             IEnumerable<CommodityViewModel> commoditiesList;
 
             commoditiesList = FilterService.CheckFilter(selectedColour) == true ?
-                commodity.OrderBy(p => p.Price).Where(c => c.Colour.Equals(selectedColour)) : 
-                commodity.OrderBy(p => p.Price);
+                commodity.Where(c => c.Colour.Equals(selectedColour)) : commodity;
 
             CommoditiesFilter model = new CommoditiesFilter
             {
@@ -58,8 +58,13 @@ namespace FlowersShop.WEB.Controllers
             return View(model);
         }
 
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
             var commodity = commoditiesService.GetCommodity(id);
             return View(commodity);
         }                

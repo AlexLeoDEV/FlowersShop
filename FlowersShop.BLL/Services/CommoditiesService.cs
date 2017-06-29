@@ -55,18 +55,6 @@ namespace FlowersShop.BLL.Services
             return Mapper.Map<IEnumerable<Commodities>, List<CommodityDTO>>(Database.Commodities.GetAll());
         }
 
-        public IEnumerable<CommodityDTO> GetNotHandMadeCommodities()
-        {
-            Mapper.Initialize(cfg => cfg.CreateMap<Commodities, CommodityDTO>());
-            var res  = Mapper.Map<IEnumerable<Commodities>, List<CommodityDTO>>(Database.Commodities.GetAll());
-
-            var rest = from r in res
-                       where r.IsHandMade.Equals(false)
-                       select r;
-
-            return rest;
-        }
-
         public CommodityDTO GetCommodity(int? id)
         {
             if (id == null)
