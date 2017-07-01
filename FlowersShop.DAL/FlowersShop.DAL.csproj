@@ -119,14 +119,14 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Data\ShopDB.mdf">
+    <Content Include="App_Data\ShopDB.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Data\ShopDB_log.ldf">
+    <Content Include="App_Data\ShopDB_log.ldf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>ShopDB.mdf</DependentUpon>
     </Content>
-    <Content Include="Queries\ShopDB_DATA_INSERT_SELECT_DELETE_.sql" />
+    <Content Include="Queries\ShopDB_DATA_INSERT.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
