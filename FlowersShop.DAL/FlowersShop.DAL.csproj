@@ -88,7 +88,7 @@
     <Compile Include="Repositories\CityRepository.cs" />
     <Compile Include="Repositories\ClientRepository.cs" />
     <Compile Include="Repositories\CommodityRepository.cs" />
-    <Compile Include="Repositories\EFUnitOFWork.cs" />
+    <Compile Include="Repositories\EfUnitOfWork.cs" />
     <Compile Include="Repositories\OrderRepository.cs" />
   </ItemGroup>
   <ItemGroup>

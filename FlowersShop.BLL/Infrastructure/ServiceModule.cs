@@ -15,7 +15,7 @@
 
         public override void Load()
         {
-            Bind<IUnitOfWork>().To<EFUnitOFWork>().WithConstructorArgument(connectionString);
+            Bind<IUnitOfWork>().To<EfUnitOfWork>().WithConstructorArgument(connectionString);
         }
     }
 }

@@ -5,7 +5,7 @@
     using FlowersShop.DAL.Entities;
     using FlowersShop.DAL.Interfaces;
 
-    public class EFUnitOFWork : IUnitOfWork
+    public class EfUnitOfWork : IUnitOfWork
     {
         private FlowersShopEntities _db;
         private CommodityRepository _commodityRepository;
@@ -16,7 +16,7 @@
 
         private bool _disposed = false;
 
-        public EFUnitOFWork()
+        public EfUnitOfWork()
         {
             _db = new FlowersShopEntities();
         }
