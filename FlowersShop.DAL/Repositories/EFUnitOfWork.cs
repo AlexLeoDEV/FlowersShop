@@ -1,94 +1,106 @@
-﻿using FlowersShop.DAL.EF;
-using FlowersShop.DAL.Entities;
-using FlowersShop.DAL.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FlowersShop.DAL.Repositories
+﻿namespace FlowersShop.DAL.Repositories
 {
+    using System;
+    using FlowersShop.DAL.EF;
+    using FlowersShop.DAL.Entities;
+    using FlowersShop.DAL.Interfaces;
+
     public class EFUnitOFWork : IUnitOfWork
     {
-        private FlowersShopContext db;
-        private CommodityRepository commodityRepository;
-        private CategoryRepository categoryRepository;
-        private ClientRepository clientRepository;
-        private OrderRepository orderRepository;
-        private CityRepository cityRepository;
+        private FlowersShopEntities _db;
+        private CommodityRepository _commodityRepository;
+        private CategoryRepository _categoryRepository;
+        private ClientRepository _clientRepository;
+        private OrderRepository _orderRepository;
+        private CityRepository _cityRepository;
 
-        public EFUnitOFWork(string connectionString)
+        private bool _disposed = false;
+
+        public EFUnitOFWork()
         {
-            db = new FlowersShopContext(connectionString);
+            _db = new FlowersShopEntities();
         }
 
-        public IRepository<Commodities> Commodities
+        public IRepository<CommoditiesEntity> Commodities
         {
             get
             {
-                if (commodityRepository == null)
-                    commodityRepository = new CommodityRepository(db);
-                return commodityRepository;
+                if (_commodityRepository == null)
+                {
+                    _commodityRepository = new CommodityRepository(_db);
+                }
+
+                return _commodityRepository;
             }
         }
 
-        public IRepository<Category> Categories
+        public IRepository<CategoryEntity> Categories
         {
             get
             {
-                if (categoryRepository == null)
-                    categoryRepository = new CategoryRepository(db);
-                return categoryRepository;
-            }
-        }        
+                if (_categoryRepository == null)
+                {
+                    _categoryRepository = new CategoryRepository(_db);
+                }
 
-        public IRepository<Client> Clients
-        {
-            get
-            {
-                if (clientRepository == null)
-                    clientRepository = new ClientRepository(db);
-                return clientRepository;
+                return _categoryRepository;
             }
         }
 
-        public IRepository<City> Cities
+        public IRepository<ClientEntity> Clients
         {
             get
             {
-                if (cityRepository == null)
-                    cityRepository = new CityRepository(db);
-                return cityRepository;
+                if (_clientRepository == null)
+                {
+                    _clientRepository = new ClientRepository(_db);
+                }
+
+                return _clientRepository;
             }
         }
 
-        public IRepository<Order> Orders
+        public IRepository<CityEntity> Cities
         {
             get
             {
-                if (orderRepository == null)
-                    orderRepository = new OrderRepository(db);
-                return orderRepository;
+                if (_cityRepository == null)
+                {
+                    _cityRepository = new CityRepository(_db);
+                }
+
+                return _cityRepository;
+            }
+        }
+
+        public IRepository<OrderEntity> Orders
+        {
+            get
+            {
+                if (_orderRepository == null)
+                {
+                    _orderRepository = new OrderRepository(_db);
+                }
+
+                return _orderRepository;
             }
         }
 
         public void Save()
         {
-            db.SaveChanges();
+            _db.SaveChanges();
         }
-
-        private bool disposed = false;
 
         public virtual void Dispose(bool disposing)
         {
-            if (!this.disposed)
+            if (!_disposed)
             {
                 if (disposing)
                 {
-                    db.Dispose();
+                    _db.Dispose();
                 }
-                this.disposed = true;
+
+                _disposed = true;
             }
         }
 

@@ -1,19 +1,12 @@
-﻿using FlowersShop.DAL.Entities;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FlowersShop.BLL.DTO
+﻿namespace FlowersShop.BLL.DTO
 {
-    public class OrderDTO
-    {
-        public int id_Order { get; set; }
+    using System;
 
-        public int? id_Commodities { get; set; }
+    public class OrderDto
+    {
+        public int OrderId { get; set; }
+
+        public int CommoditiesId { get; set; }
 
         public DateTime OrderTime { get; set; }
 
@@ -21,14 +14,14 @@ namespace FlowersShop.BLL.DTO
 
         public decimal FullPrice { get; set; }
 
-        public int? id_Client { get; set; }
+        public int ClientId { get; set; }
 
         public string Receiver { get; set; }
 
         public string Address { get; set; }
 
-        public ClientDTO Client { get; set; }
+        public ClientDto ClientDto { get; set; }
 
-        public CommodityDTO Commodities { get; set; }
+        public CommodityDto CommodityDto { get; set; }
     }
 }

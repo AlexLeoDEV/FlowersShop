@@ -1,50 +1,48 @@
-﻿using FlowersShop.DAL.EF;
-using FlowersShop.DAL.Entities;
-using FlowersShop.DAL.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FlowersShop.DAL.Repositories
+﻿namespace FlowersShop.DAL.Repositories
 {
-    public class OrderRepository : IRepository<Order>
+    using System.Collections.Generic;
+    using System.Linq;
+    using FlowersShop.DAL.EF;
+    using FlowersShop.DAL.Entities;
+    using FlowersShop.DAL.Interfaces;
+
+    public class OrderRepository : IRepository<OrderEntity>
     {
-        private FlowersShopContext db;
-        public OrderRepository(FlowersShopContext context)
+        private FlowersShopEntities _db;
+
+        public OrderRepository(FlowersShopEntities context)
         {
-            db = context;
+            _db = context;
         }
 
-        public void Create(Order item)
+        public void Create(OrderEntity item)
         {
-            db.Orders.Add(item);
+            _db.Orders.Add(item);
         }
 
         public void Delete(int id)
         {
-            Order Order = db.Orders.Find(id);
-            if (Order != null)
+            OrderEntity order = _db.Orders.Find(id);
+
+            if (order != null)
             {
-                db.Orders.Remove(Order);
+                _db.Orders.Remove(order);
             }
         }
 
-        public Order Get(int id)
+        public OrderEntity Get(int id)
         {
-            return db.Orders.Find(id);
+            return _db.Orders.Find(id);
         }
 
-        public IEnumerable<Order> GetAll()
+        public IEnumerable<OrderEntity> GetAll()
         {
-
-            return db.Orders.ToList();
+            return _db.Orders.ToList();
         }
 
-        public void Update(Order item)
+        public void Update(OrderEntity item)
         {
-            db.Entry(item).State = System.Data.Entity.EntityState.Modified;
+            _db.Entry(item).State = System.Data.Entity.EntityState.Modified;
         }
     }
 }

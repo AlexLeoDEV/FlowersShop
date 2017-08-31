@@ -1,26 +1,23 @@
-﻿using FlowersShop.BLL.Interfaces;
-using FlowersShop.DAL.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FlowersShop.BLL.DTO;
-using FlowersShop.DAL.Entities;
-using FlowersShop.BLL.Infrastructure;
-using AutoMapper;
-
-namespace FlowersShop.BLL.Services
+﻿namespace FlowersShop.BLL.Services
 {
+    using FlowersShop.BLL.Interfaces;
+    using FlowersShop.DAL.Interfaces;
+    using System.Collections.Generic;
+    using FlowersShop.BLL.DTO;
+    using FlowersShop.DAL.Entities;
+    using FlowersShop.BLL.Infrastructure;
+    using AutoMapper;
+
     public class ClientService : IClientService
     {
-        IUnitOfWork Database { get; set; }
+        public IUnitOfWork Database { get; set; }
+
         public ClientService(IUnitOfWork uow)
         {
             Database = uow;
         }
 
-        public ClientDTO GetClient(int? id)
+        public ClientDto GetClient(int? id)
         {
             if (id == null)
             {
@@ -33,28 +30,30 @@ namespace FlowersShop.BLL.Services
             {
                 throw new ValidationException("Commodity id was not found", "");
             }
-            Mapper.Initialize(cfg => cfg.CreateMap<Client, ClientDTO>());
-            return Mapper.Map<Client, ClientDTO>(cit);
+
+            Mapper.Initialize(cfg => cfg.CreateMap<ClientEntity, ClientDto>());
+            return Mapper.Map<ClientEntity, ClientDto>(cit);
         }
 
-        public IEnumerable<ClientDTO> GetClients()
+        public IEnumerable<ClientDto> GetClients()
         {
-            Mapper.Initialize(cfg => cfg.CreateMap<Client, ClientDTO>());
-            return Mapper.Map<IEnumerable<Client>, List<ClientDTO>>(Database.Clients.GetAll());
+            Mapper.Initialize(cfg => cfg.CreateMap<ClientEntity, ClientDto>());
+            return Mapper.Map<IEnumerable<ClientEntity>, List<ClientDto>>(Database.Clients.GetAll());
         }
 
-        public void Create(ClientDTO client)
+        public void Create(ClientDto client)
         {
-            Database.Clients.Create(new Client
+            Database.Clients.Create(new ClientEntity
             {
-                id_Client = client.id_Client,
+                Id = client.ClientId,
                 Name = client.Name,
                 CellPhone = client.CellPhone,
                 Email = client.Email,
                 Gender = client.Gender,
                 Age = client.Age,
-                id_City = client.id_City
+                CityId = client.CityId
             });
+
             Database.Save();
         }
 
@@ -64,18 +63,19 @@ namespace FlowersShop.BLL.Services
             Database.Save();
         }
 
-        public void Update(ClientDTO client)
+        public void Update(ClientDto client)
         {
-            Database.Clients.Update(new Client
+            Database.Clients.Update(new ClientEntity
             {
-                id_Client = client.id_Client,
+                Id = client.ClientId,
                 Name = client.Name,
                 CellPhone = client.CellPhone,
                 Email = client.Email,
                 Gender = client.Gender,
                 Age = client.Age,
-                id_City = client.id_City
+                CityId = client.CityId
             });
+
             Database.Save();
         }
 

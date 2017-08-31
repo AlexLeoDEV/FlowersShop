@@ -1,34 +1,32 @@
-﻿using FlowersShop.BLL.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FlowersShop.BLL.DTO;
-using FlowersShop.DAL.Interfaces;
-using FlowersShop.DAL.Entities;
-using FlowersShop.BLL.Infrastructure;
-using AutoMapper;
-
-namespace FlowersShop.BLL.Services
+﻿namespace FlowersShop.BLL.Services
 {
+    using FlowersShop.BLL.Interfaces;
+    using System;
+    using System.Collections.Generic;
+    using FlowersShop.BLL.DTO;
+    using FlowersShop.DAL.Interfaces;
+    using FlowersShop.DAL.Entities;
+    using FlowersShop.BLL.Infrastructure;
+    using AutoMapper;
+
     public class OrderService : IOrderService
     {
-        IUnitOfWork Database { get; set; }
+        public IUnitOfWork Database { get; set; }
+
         public OrderService(IUnitOfWork uow)
         {
             Database = uow;
         }
-        public void Create(OrderDTO order)
+        public void Create(OrderDto order)
         {
-            Database.Orders.Create(new Order
+            Database.Orders.Create(new OrderEntity
             {
-                id_Order = order.id_Order,
-                id_Commodities = order.id_Commodities,
+                Id = order.OrderId,
+                CommodityId = order.CommoditiesId,
                 OrderTime = DateTime.Now,
                 Quantity = order.Quantity,
                 FullPrice = order.Quantity,
-                id_Client = order.id_Client,
+                ClientId = order.ClientId,
                 Receiver = order.Receiver,
                 Address = order.Address
             });
@@ -46,7 +44,7 @@ namespace FlowersShop.BLL.Services
             Database.Dispose();
         }
 
-        public OrderDTO GetOrder(int? id)
+        public OrderDto GetOrder(int? id)
         {
             if (id == null)
             {
@@ -59,27 +57,28 @@ namespace FlowersShop.BLL.Services
             {
                 throw new ValidationException("Commodity id was not found", "");
             }
-            Mapper.Initialize(cfg => cfg.CreateMap<Order, OrderDTO>());
-            return Mapper.Map<Order, OrderDTO>(cit);
+
+            Mapper.Initialize(cfg => cfg.CreateMap<OrderEntity, OrderDto>());
+            return Mapper.Map<OrderEntity, OrderDto>(cit);
         }
 
-        public IEnumerable<OrderDTO> GetOrders()
+        public IEnumerable<OrderDto> GetOrders()
         {
-            Mapper.Initialize(cfg => cfg.CreateMap<Order, OrderDTO>());
-            var res = Mapper.Map<IEnumerable<Order>, List<OrderDTO>>(Database.Orders.GetAll());
+            Mapper.Initialize(cfg => cfg.CreateMap<OrderEntity, OrderDto>());
+            var res = Mapper.Map<IEnumerable<OrderEntity>, List<OrderDto>>(Database.Orders.GetAll());
             return res;
         }
 
-        public void Update(OrderDTO order)
+        public void Update(OrderDto order)
         {
-            Database.Orders.Update(new Order
+            Database.Orders.Update(new OrderEntity
             {
-                id_Order = order.id_Order,
-                id_Commodities = order.id_Commodities,
+                Id = order.OrderId,
+                CommodityId = order.CommoditiesId,
                 OrderTime = DateTime.Now,
                 Quantity = order.Quantity,
                 FullPrice = order.Quantity,
-                id_Client = order.id_Client,
+                ClientId = order.ClientId,
                 Receiver = order.Receiver,
                 Address = order.Address
             });

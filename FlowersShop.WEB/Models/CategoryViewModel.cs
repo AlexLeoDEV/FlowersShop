@@ -12,7 +12,7 @@ namespace FlowersShop.WEB.Models
         public int id_Category { get; set; }
         public string Title { get; set; }
         
-        public ICollection<Commodities> Commodities { get; set; }
+        public ICollection<CommoditiesEntity> Commodities { get; set; }
     }
 
     public enum Categories

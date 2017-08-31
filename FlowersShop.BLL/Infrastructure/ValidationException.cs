@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FlowersShop.BLL.Infrastructure
+﻿namespace FlowersShop.BLL.Infrastructure
 {
+    using System;
+
     public class ValidationException : Exception
     {
         public string Property { get; protected set; }

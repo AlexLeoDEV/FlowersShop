@@ -18,6 +18,6 @@ namespace FlowersShop.WEB.Models
 
         public int? id_Client { get; set; }
 
-        public ICollection<Client> Client { get; set; }
+        public ICollection<ClientEntity> Client { get; set; }
     }
 }

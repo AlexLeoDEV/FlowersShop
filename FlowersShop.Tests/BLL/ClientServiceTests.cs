@@ -16,16 +16,17 @@ namespace FlowersShop.Tests.BLL
     [TestClass]
     public class ClientServiceTests
     {
-        private ClientService clientService;
-        ClientDTO newClient = new ClientDTO
+        private ClientService _clientService;
+
+        ClientDto newClient = new ClientDto
         {
-            id_Client = 2,
+            ClientId = 2,
             Name = "Petro",
             CellPhone = "0995566445",
             Email = "email@hot.org",
             Gender = "Male",
             Age = 42,
-            id_City = 1
+            CityId = 1
         };
 
         [TestMethod]
@@ -33,11 +34,11 @@ namespace FlowersShop.Tests.BLL
         {
             //Arrange
             var mock = new Mock<IUnitOfWork>();
-            mock.Setup(c => c.Clients.GetAll()).Returns(new List<Client>());
+            mock.Setup(c => c.Clients.GetAll()).Returns(new List<ClientEntity>());
 
             //Act
-            clientService = new ClientService(mock.Object);
-            var result = clientService.GetClients();
+            _clientService = new ClientService(mock.Object);
+            var result = _clientService.GetClients();
 
             //Assert
             Assert.IsNotNull(result);
@@ -51,10 +52,10 @@ namespace FlowersShop.Tests.BLL
             var mock = new Mock<IUnitOfWork>();
 
             //Act
-            mock.Setup(a => a.Clients.Get(clientId)).Returns(new Client());
-            clientService = new ClientService(mock.Object);
+            mock.Setup(a => a.Clients.Get(clientId)).Returns(new ClientEntity());
+            _clientService = new ClientService(mock.Object);
 
-            var result = clientService.GetClient(clientId);
+            var result = _clientService.GetClient(clientId);
 
             //Assert
             Assert.IsNotNull(result);
@@ -68,17 +69,17 @@ namespace FlowersShop.Tests.BLL
             var mock = new Mock<IUnitOfWork>();            
            
             //Act 
-            mock.Setup(c => c.Clients.Create(It.Is<Client>(cl => (cl.id_Client == newClient.id_Client) &&
-                                                        (cl.Name == newClient.Name) &&
-                                                        (cl.CellPhone == newClient.CellPhone) &&
-                                                        (cl.Email == newClient.Email) &&
-                                                        (cl.Gender == newClient.Gender) &&
-                                                        (cl.Age == newClient.Age) &&
-                                                        (cl.id_City == newClient.id_City)
-                                                  ))).Callback(() => IsErrorOccured = false);
+            mock.Setup(c => c.Clients.Create(It.Is<ClientEntity>(cl => (cl.Id == newClient.ClientId) &&
+                                                        cl.Name == newClient.Name &&
+                                                        cl.CellPhone == newClient.CellPhone &&
+                                                        cl.Email == newClient.Email &&
+                                                        cl.Gender == newClient.Gender &&
+                                                        cl.Age == newClient.Age &&
+                                                        cl.CityId == newClient.CityId)))
+                                                        .Callback(() => IsErrorOccured = false);
 
-            clientService = new ClientService(mock.Object);
-            clientService.Create(newClient);
+            _clientService = new ClientService(mock.Object);
+            _clientService.Create(newClient);
 
             //Arrange
             Assert.IsFalse(IsErrorOccured);
@@ -88,56 +89,56 @@ namespace FlowersShop.Tests.BLL
         public void Update_client_succeeded()
         {
             //Arrange
-            bool IsErrorOccured = true;
+            var isErrorOccured = true;
             var mock = new Mock<IUnitOfWork>();
 
             //Act 
-            mock.Setup(c => c.Clients.Update(It.Is<Client>(cl => (cl.id_Client == newClient.id_Client) &&
-                                                        (cl.Name == newClient.Name) &&
-                                                        (cl.CellPhone == newClient.CellPhone) &&
-                                                        (cl.Email == newClient.Email) &&
-                                                        (cl.Gender == newClient.Gender) &&
-                                                        (cl.Age == newClient.Age) &&
-                                                        (cl.id_City == newClient.id_City)
-                                                  ))).Callback(() => IsErrorOccured = false);
-            clientService = new ClientService(mock.Object);
-            clientService.Update(newClient);
+            mock.Setup(c => c.Clients.Update(It.Is<ClientEntity>(cl => cl.Id == newClient.ClientId 
+                                                                && cl.Name == newClient.Name 
+                                                                && cl.CellPhone == newClient.CellPhone 
+                                                                && cl.Email == newClient.Email 
+                                                                && cl.Gender == newClient.Gender 
+                                                                && cl.Age == newClient.Age 
+                                                                && cl.CityId == newClient.CityId)))
+                                                                .Callback(() => isErrorOccured = false);
+            _clientService = new ClientService(mock.Object);
+            _clientService.Update(newClient);
 
             //Arrange
-            Assert.IsFalse(IsErrorOccured);
+            Assert.IsFalse(isErrorOccured);
         }
 
         [TestMethod]
         public void Delete_client_succeeded()
         {
             //Arrange
-            bool IsErrorOccured = true;
+            var isErrorOccured = true;
             var mock = new Mock<IUnitOfWork>();
             var clientId = 1;
 
             //Act and Arrange
-            mock.Setup(c => c.Clients.Delete(clientId)).Callback(() => IsErrorOccured = false);
-            clientService = new ClientService(mock.Object);
-            clientService.Delete(clientId);
+            mock.Setup(c => c.Clients.Delete(clientId)).Callback(() => isErrorOccured = false);
+            _clientService = new ClientService(mock.Object);
+            _clientService.Delete(clientId);
 
             //Arrange
-            Assert.IsFalse(IsErrorOccured);
+            Assert.IsFalse(isErrorOccured);
         }
 
         [TestMethod]
         public void Dispose_client_succeeded()
         {
             //Arrange
-            bool IsErrorOccured = true;
+            var isErrorOccured = true;
             var mock = new Mock<IUnitOfWork>();
 
             //Act
-            mock.Setup(c => c.Dispose()).Callback(() => IsErrorOccured = false);
-            clientService = new ClientService(mock.Object);
-            clientService.Dispose();
+            mock.Setup(c => c.Dispose()).Callback(() => isErrorOccured = false);
+            _clientService = new ClientService(mock.Object);
+            _clientService.Dispose();
 
             //Assert
-            Assert.IsFalse(IsErrorOccured);
+            Assert.IsFalse(isErrorOccured);
         }
     }
 }

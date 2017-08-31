@@ -1,19 +1,20 @@
-﻿using FlowersShop.DAL.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FlowersShop.DAL.Interfaces
+﻿namespace FlowersShop.DAL.Interfaces
 {
+    using System;
+    using FlowersShop.DAL.Entities;
+
     public interface IUnitOfWork : IDisposable
     {
-        IRepository<Commodities> Commodities { get; }
-        IRepository<Category> Categories { get; }
-        IRepository<Client> Clients { get; }
-        IRepository<City> Cities { get; }
-        IRepository<Order> Orders { get; }
+        IRepository<CommoditiesEntity> Commodities { get; }
+
+        IRepository<CategoryEntity> Categories { get; }
+
+        IRepository<ClientEntity> Clients { get; }
+
+        IRepository<CityEntity> Cities { get; }
+
+        IRepository<OrderEntity> Orders { get; }
+
         void Save();
     }
 }

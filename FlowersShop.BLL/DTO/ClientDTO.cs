@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FlowersShop.BLL.DTO
+﻿namespace FlowersShop.BLL.DTO
 {
-    public class ClientDTO
+    using System;
+    using System.Collections.Generic;
+
+    public class ClientDto
     {
-        public int id_Client { get; set; }
+        public int ClientId { get; set; }
 
         public string Name { get; set; }
 
@@ -19,12 +15,12 @@ namespace FlowersShop.BLL.DTO
 
         public string Gender { get; set; }
 
-        public int? Age { get; set; }
+        public int Age { get; set; }
 
-        public int? id_City { get; set; }
+        public int CityId { get; set; }
 
-        public CityDTO City { get; set; }
+        public CityDto CityDto { get; set; }
         
-        public ICollection<OrderDTO> Order { get; set; }
+        public ICollection<OrderDto> OrderDto { get; set; }
     }
 }

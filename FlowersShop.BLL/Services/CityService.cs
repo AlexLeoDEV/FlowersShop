@@ -1,27 +1,23 @@
-﻿using FlowersShop.BLL.Interfaces;
-using FlowersShop.DAL.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FlowersShop.BLL.DTO;
-using FlowersShop.DAL.Entities;
-using FlowersShop.BLL.Infrastructure;
-using AutoMapper;
-using System.Web.Mvc;
-
-namespace FlowersShop.BLL.Services
+﻿namespace FlowersShop.BLL.Services
 {
+    using FlowersShop.BLL.Interfaces;
+    using FlowersShop.DAL.Interfaces;
+    using System.Collections.Generic;
+    using FlowersShop.BLL.DTO;
+    using FlowersShop.DAL.Entities;
+    using FlowersShop.BLL.Infrastructure;
+    using AutoMapper;
+
     public class CityService : ICityService
     {
-        IUnitOfWork Database { get; set; }
+        public IUnitOfWork Database { get; set; }
+
         public CityService(IUnitOfWork uow)
         {
             Database = uow;
         }
 
-        public CityDTO GetCity(int? id)
+        public CityDto GetCity(int? id)
         {
             if (id == null)
             {
@@ -34,24 +30,25 @@ namespace FlowersShop.BLL.Services
             {
                 throw new ValidationException("Commodity id was not found", "");
             }
-            Mapper.Initialize(cfg => cfg.CreateMap<City, CityDTO>());
-            return Mapper.Map<City, CityDTO>(cit);
+            Mapper.Initialize(cfg => cfg.CreateMap<CityEntity, CityDto>());
+            return Mapper.Map<CityEntity, CityDto>(cit);
         }
 
-        public IEnumerable<CityDTO> GetCities()
+        public IEnumerable<CityDto> GetCities()
         {
-            Mapper.Initialize(cfg => cfg.CreateMap<City, CityDTO>());
-            return Mapper.Map<IEnumerable<City>, List<CityDTO>>(Database.Cities.GetAll());
+            Mapper.Initialize(cfg => cfg.CreateMap<CityEntity, CityDto>());
+            return Mapper.Map<IEnumerable<CityEntity>, List<CityDto>>(Database.Cities.GetAll());
         }
 
-        public void Create(CityDTO city)
+        public void Create(CityDto city)
         {
-            Database.Cities.Create(new City
+            Database.Cities.Create(new CityEntity
             {
-                id_City = city.id_City,
-                Title = city.Title,
+                Id = city.CityId,
+                Name = city.Title,
                 Price = city.Price
             });
+
             Database.Save();
         }
 
@@ -61,14 +58,15 @@ namespace FlowersShop.BLL.Services
             Database.Save();
         }
 
-        public void Update(CityDTO city)
+        public void Update(CityDto city)
         {
-            Database.Cities.Update(new City
+            Database.Cities.Update(new CityEntity
             {
-                id_City = city.id_City,
-                Title = city.Title,
+                Id = city.CityId,
+                Name = city.Title,
                 Price = city.Price
             });
+
             Database.Save();
         }
 
@@ -80,10 +78,11 @@ namespace FlowersShop.BLL.Services
         public IEnumerable<string> GetCityName()
         {
             var cit = Database.Cities.GetAll();
-            List<string> citTitle = new List<string>();
+            var citTitle = new List<string>();
+
             foreach (var item in cit)
             {
-                citTitle.Add(item.Title);
+                citTitle.Add(item.Name);
             }
             return citTitle;
         }

@@ -20,35 +20,35 @@ namespace FlowersShop.WEB.Controllers
 
         public ActionResult GetBouquets()
         {
-            IEnumerable<CommoditiesByCategoryDTO> commodByCatDtos = commoditiesByCategory.GetBouquets();            
+            IEnumerable<CommoditiesByCategoryDto> commodByCatDtos = commoditiesByCategory.GetBouquets();            
 
             return View(commodByCatDtos);
         }
 
         public ActionResult GetBaskets()
         {
-            IEnumerable<CommoditiesByCategoryDTO> commodByCatDtos = commoditiesByCategory.GetBaskets();
+            IEnumerable<CommoditiesByCategoryDto> commodByCatDtos = commoditiesByCategory.GetBaskets();
 
             return View(commodByCatDtos);
         }
 
         public ActionResult GetMonoBouquets()
         {
-            IEnumerable<CommoditiesByCategoryDTO> commodByCatDtos = commoditiesByCategory.GetMonoBouquets();
+            IEnumerable<CommoditiesByCategoryDto> commodByCatDtos = commoditiesByCategory.GetMonoBouquets();
 
             return View(commodByCatDtos);
         }
 
         public ActionResult GetCompositions()
         {
-            IEnumerable<CommoditiesByCategoryDTO> commodByCatDtos = commoditiesByCategory.GetCompositions();
+            IEnumerable<CommoditiesByCategoryDto> commodByCatDtos = commoditiesByCategory.GetCompositions();
 
             return View(commodByCatDtos);
         }
 
         public ActionResult GetDreamBouquet()
         {
-            IEnumerable<CommoditiesByCategoryDTO> commodByCatDtos = commoditiesByCategory.GetDreamBouquet();
+            IEnumerable<CommoditiesByCategoryDto> commodByCatDtos = commoditiesByCategory.GetDreamBouquet();
 
             return View(commodByCatDtos);
         }

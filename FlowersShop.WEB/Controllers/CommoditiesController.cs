@@ -33,9 +33,9 @@ namespace FlowersShop.WEB.Controllers
 
         public ViewResult Index(string selectedColour, int page = 1)
         {
-            IEnumerable<CommodityDTO> commodDtos = commoditiesService.GetCommodities();                 
-            Mapper.Initialize(cfg => cfg.CreateMap<CommodityDTO, CommodityViewModel>());
-            var commodity = Mapper.Map<IEnumerable<CommodityDTO>, List<CommodityViewModel>>(commodDtos);
+            IEnumerable<CommodityDto> commodDtos = commoditiesService.GetCommodities();                 
+            Mapper.Initialize(cfg => cfg.CreateMap<CommodityDto, CommodityViewModel>());
+            var commodity = Mapper.Map<IEnumerable<CommodityDto>, List<CommodityViewModel>>(commodDtos);
             IEnumerable<CommodityViewModel> commoditiesList;
 
             commoditiesList = FilterService.CheckFilter(selectedColour) == true ?

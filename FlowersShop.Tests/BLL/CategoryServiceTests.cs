@@ -16,10 +16,10 @@ namespace FlowersShop.Tests.BLL
     public class CategoryServiceTests
     {
         private CategoryService categoryService;
-        CategoryDTO newCategory = new CategoryDTO
+        CategoryDto newCategory = new CategoryDto
         {
-            id_Category = 6,
-            Title = "New category",
+            CategoryId = 6,
+            Name = "New category",
         };
 
         [TestMethod]
@@ -27,7 +27,7 @@ namespace FlowersShop.Tests.BLL
         {
             //Arrange
             var mock = new Mock<IUnitOfWork>();
-            mock.Setup(c => c.Categories.GetAll()).Returns(new List<Category>());
+            mock.Setup(c => c.Categories.GetAll()).Returns(new List<CategoryEntity>());
 
             //Act
             categoryService = new CategoryService(mock.Object);
@@ -45,7 +45,7 @@ namespace FlowersShop.Tests.BLL
             var mock = new Mock<IUnitOfWork>();
 
             //Act
-            mock.Setup(a => a.Categories.Get(categoryId)).Returns(new Category());
+            mock.Setup(a => a.Categories.Get(categoryId)).Returns(new CategoryEntity());
             categoryService = new CategoryService(mock.Object);
 
             var result = categoryService.GetCategory(categoryId);
@@ -58,18 +58,19 @@ namespace FlowersShop.Tests.BLL
         public void Create_category_succeeded()
         {
             //Arrange
-            bool IsErrorOccured = true;
+            var isErrorOccured = true;
             var mock = new Mock<IUnitOfWork>();
             
             //Act 
-            mock.Setup(c => c.Categories.Create(It.Is<Category>(cl => (cl.id_Category == newCategory.id_Category) &&
-                                                        (cl.Title == newCategory.Title)
-                                                  ))).Callback(() => IsErrorOccured = false);
+            mock.Setup(c => c.Categories.Create(It.Is<CategoryEntity>
+                (cl => cl.Id == newCategory.CategoryId 
+                    && cl.Name == newCategory.Name)))
+                    .Callback(() => isErrorOccured = false);
             categoryService = new CategoryService(mock.Object);
             categoryService.Create(newCategory);
 
             //Arrange
-            Assert.IsFalse(IsErrorOccured);
+            Assert.IsFalse(isErrorOccured);
         }
 
         [TestMethod]
@@ -80,9 +81,10 @@ namespace FlowersShop.Tests.BLL
             var mock = new Mock<IUnitOfWork>();
 
             //Act 
-            mock.Setup(c => c.Categories.Update(It.Is<Category>(cl => (cl.id_Category == newCategory.id_Category) &&
-                                                        (cl.Title == newCategory.Title)
-                                                  ))).Callback(() => IsErrorOccured = false);
+            mock.Setup(c => c.Categories.Update(It.Is<CategoryEntity>
+                (cl => cl.Id == newCategory.CategoryId 
+                && cl.Name == newCategory.Name)))
+                .Callback(() => IsErrorOccured = false);
             categoryService = new CategoryService(mock.Object);
             categoryService.Update(newCategory);
 

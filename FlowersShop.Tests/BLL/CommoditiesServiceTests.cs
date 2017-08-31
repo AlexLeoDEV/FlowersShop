@@ -13,17 +13,17 @@ namespace FlowersShop.Tests
     public class CommoditiesServiceTests
     {
         private CommoditiesService commService;
-        CommodityDTO newCommodity = new CommodityDTO
+        CommodityDto newCommodity = new CommodityDto
         {
-            id_Commodities = 2,
-            Title = "Rose",
+            CommodityId = 2,
+            Name = "Rose",
             Colour = "Red",
             Price = 50M,
             Description = "Red rose",
             IsHandMade = true,
-            id_Category = 1,
+            CategoryId = 1,
             Preferences = "Beloved",
-            image = "/Content/img.jpg"
+            ImagePath = "/Content/img.jpg"
         };
 
         [TestMethod]
@@ -31,7 +31,7 @@ namespace FlowersShop.Tests
         {
             //Arrange
             var mock = new Mock<IUnitOfWork>();
-            mock.Setup(c => c.Commodities.GetAll()).Returns(new List<Commodities>());
+            mock.Setup(c => c.Commodities.GetAll()).Returns(new List<CommoditiesEntity>());
 
             //Act
             commService = new CommoditiesService(mock.Object);
@@ -49,7 +49,7 @@ namespace FlowersShop.Tests
             var mock = new Mock<IUnitOfWork>();
 
             //Act
-            mock.Setup(a => a.Commodities.Get(commodityId)).Returns(new Commodities());
+            mock.Setup(a => a.Commodities.Get(commodityId)).Returns(new CommoditiesEntity());
             commService = new CommoditiesService(mock.Object);
 
             var result = commService.GetCommodity(commodityId);
@@ -66,16 +66,17 @@ namespace FlowersShop.Tests
             var mock = new Mock<IUnitOfWork>();
 
             //Act 
-            mock.Setup(c => c.Commodities.Create(It.Is<Commodities>(cl => (cl.id_Commodities == newCommodity.id_Commodities) &&
-                                                        (cl.Title == newCommodity.Title) &&
-                                                        (cl.Colour == newCommodity.Colour) &&
-                                                        (cl.Price == newCommodity.Price) &&
-                                                        (cl.Description == newCommodity.Description) &&
-                                                        (cl.IsHandMade == newCommodity.IsHandMade) &&
-                                                        (cl.id_Category == newCommodity.id_Category) &&
-                                                        (cl.Preferences == newCommodity.Preferences) &&
-                                                        (cl.image == newCommodity.image)
-                                                  ))).Callback(() => IsErrorOccured = false);
+            mock.Setup(c => c.Commodities.Create(It.Is<CommoditiesEntity>(cl => 
+                                                        cl.Id == newCommodity.CommodityId 
+                                                        && cl.Name == newCommodity.Name 
+                                                        && cl.Colour == newCommodity.Colour 
+                                                        && cl.Price == newCommodity.Price 
+                                                        && cl.Description == newCommodity.Description 
+                                                        && cl.IsHandMade == newCommodity.IsHandMade 
+                                                        && cl.CategoryId == newCommodity.CategoryId 
+                                                        && cl.Preferences == newCommodity.Preferences 
+                                                        && cl.ImagePath == newCommodity.ImagePath)))
+                                                        .Callback(() => IsErrorOccured = false);
 
             commService = new CommoditiesService(mock.Object);
             commService.Create(newCommodity);
@@ -88,58 +89,59 @@ namespace FlowersShop.Tests
         public void Update_commodity_succeeded()
         {
             //Arrange
-            bool IsErrorOccured = true;
+            var isErrorOccured = true;
             var mock = new Mock<IUnitOfWork>();
 
             //Act 
-            mock.Setup(c => c.Commodities.Update(It.Is<Commodities>(cl => (cl.id_Commodities == newCommodity.id_Commodities) &&
-                                                        (cl.Title == newCommodity.Title) &&
-                                                        (cl.Colour == newCommodity.Colour) &&
-                                                        (cl.Price == newCommodity.Price) &&
-                                                        (cl.Description == newCommodity.Description) &&
-                                                        (cl.IsHandMade == newCommodity.IsHandMade) &&
-                                                        (cl.id_Category == newCommodity.id_Category) &&
-                                                        (cl.Preferences == newCommodity.Preferences) &&
-                                                        (cl.image == newCommodity.image)
-                                                  ))).Callback(() => IsErrorOccured = false);
+            mock.Setup(c => c.Commodities.Update(It.Is<CommoditiesEntity>(cl => 
+                                                        cl.Id == newCommodity.CommodityId 
+                                                        && cl.Name == newCommodity.Name 
+                                                        && cl.Colour == newCommodity.Colour 
+                                                        && cl.Price == newCommodity.Price 
+                                                        && cl.Description == newCommodity.Description
+                                                        && cl.IsHandMade == newCommodity.IsHandMade 
+                                                        && cl.CategoryId == newCommodity.CategoryId 
+                                                        && cl.Preferences == newCommodity.Preferences 
+                                                        && cl.ImagePath == newCommodity.ImagePath)))
+                                                        .Callback(() => isErrorOccured = false);
             commService = new CommoditiesService(mock.Object);
             commService.Update(newCommodity);
 
             //Arrange
-            Assert.IsFalse(IsErrorOccured);
+            Assert.IsFalse(isErrorOccured);
         }
 
         [TestMethod]
         public void Delete_commodity_succeeded()
         {
             //Arrange
-            bool IsErrorOccured = true;
+            var isErrorOccured = true;
             var mock = new Mock<IUnitOfWork>();
             var commodityId = 7;
 
             //Act and Arrange
-            mock.Setup(c => c.Commodities.Delete(commodityId)).Callback(() => IsErrorOccured = false);
+            mock.Setup(c => c.Commodities.Delete(commodityId)).Callback(() => isErrorOccured = false);
             commService = new CommoditiesService(mock.Object);
             commService.Delete(commodityId);
 
             //Arrange
-            Assert.IsFalse(IsErrorOccured);
+            Assert.IsFalse(isErrorOccured);
         }
 
         [TestMethod]
         public void Dispose_commodity_succeeded()
         {
             //Arrange
-            bool IsErrorOccured = true;
+            var isErrorOccured = true;
             var mock = new Mock<IUnitOfWork>();
 
             //Act
-            mock.Setup(c => c.Dispose()).Callback(() => IsErrorOccured = false);
+            mock.Setup(c => c.Dispose()).Callback(() => isErrorOccured = false);
             commService = new CommoditiesService(mock.Object);
             commService.Dispose();
 
             //Assert
-            Assert.IsFalse(IsErrorOccured);
+            Assert.IsFalse(isErrorOccured);
         }
     }
 }

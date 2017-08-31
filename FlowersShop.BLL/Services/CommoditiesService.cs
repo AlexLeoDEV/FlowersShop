@@ -1,18 +1,13 @@
-﻿using FlowersShop.BLL.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FlowersShop.BLL.DTO;
-using FlowersShop.DAL.Interfaces;
-using AutoMapper;
-using FlowersShop.DAL.Entities;
-using FlowersShop.BLL.Infrastructure;
-using System.Web.Mvc;
-
-namespace FlowersShop.BLL.Services
+﻿namespace FlowersShop.BLL.Services
 {
+    using FlowersShop.BLL.Interfaces;
+    using System.Collections.Generic;
+    using FlowersShop.BLL.DTO;
+    using FlowersShop.DAL.Interfaces;
+    using AutoMapper;
+    using FlowersShop.DAL.Entities;
+    using FlowersShop.BLL.Infrastructure;
+
     public class CommoditiesService : ICommoditiesService
     {
         public IUnitOfWork Database { get; set; }
@@ -22,19 +17,21 @@ namespace FlowersShop.BLL.Services
             Database = uow;
         }
 
-        public void Create(CommodityDTO commodity)
+        public void Create(CommodityDto commodity)
         {
-            Database.Commodities.Create(new Commodities
-            { id_Commodities = commodity.id_Commodities,
-                Title = commodity.Title,
+            Database.Commodities.Create(new CommoditiesEntity
+            {
+                Id = commodity.CommodityId,
+                Name = commodity.Name,
                 Description = commodity.Description,
                 Colour = commodity.Colour,
-                id_Category = commodity.id_Category,
+                CategoryId = commodity.CategoryId,
                 IsHandMade = commodity.IsHandMade,
                 Price = commodity.Price,
                 Preferences = commodity.Preferences,
-                image = commodity.image
+                ImagePath = commodity.ImagePath
             });
+
             Database.Save();
         }
 
@@ -49,13 +46,13 @@ namespace FlowersShop.BLL.Services
             Database.Dispose();
         }
 
-        public IEnumerable<CommodityDTO> GetCommodities()
+        public IEnumerable<CommodityDto> GetCommodities()
         {
-            Mapper.Initialize(cfg => cfg.CreateMap<Commodities, CommodityDTO>());
-            return Mapper.Map<IEnumerable<Commodities>, List<CommodityDTO>>(Database.Commodities.GetAll());
+            Mapper.Initialize(cfg => cfg.CreateMap<CommoditiesEntity, CommodityDto>());
+            return Mapper.Map<IEnumerable<CommoditiesEntity>, List<CommodityDto>>(Database.Commodities.GetAll());
         }
 
-        public CommodityDTO GetCommodity(int? id)
+        public CommodityDto GetCommodity(int? id)
         {
             if (id == null)
             {
@@ -68,31 +65,33 @@ namespace FlowersShop.BLL.Services
             {
                 throw new ValidationException("Commodity id was not found","");
             }
-            Mapper.Initialize(cfg => cfg.CreateMap<Commodities, CommodityDTO>());
-            return Mapper.Map<Commodities, CommodityDTO>(com);
+
+            Mapper.Initialize(cfg => cfg.CreateMap<CommoditiesEntity, CommodityDto>());
+            return Mapper.Map<CommoditiesEntity, CommodityDto>(com);
         }
 
         public int GetCommoditiesQuantity()
         {
-            Mapper.Initialize(cfg => cfg.CreateMap<Commodities, CommodityDTO>());
-            var quantity = Mapper.Map<IEnumerable<Commodities>, List<CommodityDTO>>(Database.Commodities.GetAll());
+            Mapper.Initialize(cfg => cfg.CreateMap<CommoditiesEntity, CommodityDto>());
+            var quantity = Mapper.Map<IEnumerable<CommoditiesEntity>, List<CommodityDto>>(Database.Commodities.GetAll());
             return quantity.Count;
         }
 
-        public void Update(CommodityDTO commodity)
+        public void Update(CommodityDto commodity)
         {
-            Database.Commodities.Update(new Commodities
+            Database.Commodities.Update(new CommoditiesEntity
             {
-                id_Commodities = commodity.id_Commodities,
-                Title = commodity.Title,
+                Id = commodity.CommodityId,
+                Name = commodity.Name,
                 Description = commodity.Description,
                 Colour = commodity.Colour,
-                id_Category = commodity.id_Category,
+                CategoryId = commodity.CategoryId,
                 IsHandMade = commodity.IsHandMade,
                 Price = commodity.Price,
                 Preferences = commodity.Preferences,
-                image = commodity.image
+                ImagePath = commodity.ImagePath
             });
+
             Database.Save();
         }
     }

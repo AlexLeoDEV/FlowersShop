@@ -1,17 +1,13 @@
-﻿using FlowersShop.BLL.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FlowersShop.BLL.DTO;
-using AutoMapper;
-using FlowersShop.DAL.Entities;
-using FlowersShop.DAL.Interfaces;
-using System.Web.Mvc;
-
-namespace FlowersShop.BLL.Services
+﻿namespace FlowersShop.BLL.Services
 {
+    using FlowersShop.BLL.Interfaces;
+    using System.Collections.Generic;
+    using System.Linq;
+    using FlowersShop.BLL.DTO;
+    using AutoMapper;
+    using FlowersShop.DAL.Entities;
+    using FlowersShop.DAL.Interfaces;
+
     public class CommoditiesByCategoryService : ICommoditiesByCategory
     {
         public IUnitOfWork Database { get; set; }
@@ -21,121 +17,122 @@ namespace FlowersShop.BLL.Services
             Database = uow;
         }
 
-        public IEnumerable<CommoditiesByCategoryDTO> GetBouquets()
+        public IEnumerable<CommoditiesByCategoryDto> GetBouquets()
         {
             Mapper.Initialize(cfg => 
             {
-                cfg.CreateMap<Category, CategoryDTO>();
-                cfg.CreateMap<Commodities, CommodityDTO>();
+                cfg.CreateMap<CategoryEntity, CategoryDto>();
+                cfg.CreateMap<CommoditiesEntity, CommodityDto>();
             });
 
-            var commodities = Mapper.Map<IEnumerable<Commodities>, List<CommodityDTO>>(Database.Commodities.GetAll());
-            var categories = Mapper.Map<IEnumerable<Category>, List<CategoryDTO>>(Database.Categories.GetAll());
-
+            var commodities = Mapper.Map<IEnumerable<CommoditiesEntity>, List<CommodityDto>>(Database.Commodities.GetAll());
+            var categories = Mapper.Map<IEnumerable<CategoryEntity>, List<CategoryDto>>(Database.Categories.GetAll());
 
             var commod = from c in categories
-                         join cm in commodities on c.id_Category equals cm.id_Category
-                         where cm.IsHandMade.Equals(false) && c.Title.Equals("Bouquet")
-                         select new CommoditiesByCategoryDTO
+                         join cm in commodities on c.CategoryId equals cm.CategoryId
+                         where cm.IsHandMade.Equals(false) && c.Name.Equals("Bouquet")
+                         select new CommoditiesByCategoryDto
                          {
-                             CommodityDTO = cm
+                             CommodityDto = cm
                          };
-            var res = Mapper.Map<IEnumerable<CommoditiesByCategoryDTO>>(commod);
 
-            return res.OrderBy(c => c.CommodityDTO.Price);
+            var res = Mapper.Map<IEnumerable<CommoditiesByCategoryDto>>(commod);
+
+            return res.OrderBy(c => c.CommodityDto.Price);
         }
 
-        public IEnumerable<CommoditiesByCategoryDTO> GetBaskets()
+        public IEnumerable<CommoditiesByCategoryDto> GetBaskets()
         {
             Mapper.Initialize(cfg => 
             {
-                cfg.CreateMap<Category, CategoryDTO>();
-                cfg.CreateMap<Commodities, CommodityDTO>();
+                cfg.CreateMap<CategoryEntity, CategoryDto>();
+                cfg.CreateMap<CommoditiesEntity, CommodityDto>();
             });
 
-            var commodities = Mapper.Map<IEnumerable<Commodities>, List<CommodityDTO>>(Database.Commodities.GetAll());
-            var categories = Mapper.Map<IEnumerable<Category>, List<CategoryDTO>>(Database.Categories.GetAll());
-
+            var commodities = Mapper.Map<IEnumerable<CommoditiesEntity>, List<CommodityDto>>(Database.Commodities.GetAll());
+            var categories = Mapper.Map<IEnumerable<CategoryEntity>, List<CategoryDto>>(Database.Categories.GetAll());
 
             var commod = from c in categories
-                         join cm in commodities on c.id_Category equals cm.id_Category
-                         where cm.IsHandMade.Equals(false) && c.Title.Equals("Flower basket")
-                         select new CommoditiesByCategoryDTO
+                         join cm in commodities on c.CategoryId equals cm.CategoryId
+                         where cm.IsHandMade.Equals(false) && c.Name.Equals("Flower basket")
+                         select new CommoditiesByCategoryDto
                          {
-                             CommodityDTO = cm
+                             CommodityDto = cm
                          };
-            var res = Mapper.Map<IEnumerable<CommoditiesByCategoryDTO>>(commod);
 
-            return res.OrderBy(c => c.CommodityDTO.Price);
+            var res = Mapper.Map<IEnumerable<CommoditiesByCategoryDto>>(commod);
+
+            return res.OrderBy(c => c.CommodityDto.Price);
         }
 
-        public IEnumerable<CommoditiesByCategoryDTO> GetMonoBouquets()
+        public IEnumerable<CommoditiesByCategoryDto> GetMonoBouquets()
         {
             Mapper.Initialize(cfg => {
-                cfg.CreateMap<Category, CategoryDTO>();
-                cfg.CreateMap<Commodities, CommodityDTO>();
+                cfg.CreateMap<CategoryEntity, CategoryDto>();
+                cfg.CreateMap<CommoditiesEntity, CommodityDto>();
             });
 
-            var commodities = Mapper.Map<IEnumerable<Commodities>, List<CommodityDTO>>(Database.Commodities.GetAll());
-            var categories = Mapper.Map<IEnumerable<Category>, List<CategoryDTO>>(Database.Categories.GetAll());
-
+            var commodities = Mapper.Map<IEnumerable<CommoditiesEntity>, List<CommodityDto>>(Database.Commodities.GetAll());
+            var categories = Mapper.Map<IEnumerable<CategoryEntity>, List<CategoryDto>>(Database.Categories.GetAll());
 
             var commod = from c in categories
-                         join cm in commodities on c.id_Category equals cm.id_Category
-                         where cm.IsHandMade.Equals(false) && c.Title.Equals("Mono bouquet")
-                         select new CommoditiesByCategoryDTO
+                         join cm in commodities on c.CategoryId equals cm.CategoryId
+                         where cm.IsHandMade.Equals(false) && c.Name.Equals("Mono bouquet")
+                         select new CommoditiesByCategoryDto
                          {
-                             CommodityDTO = cm
+                             CommodityDto = cm
                          };
-            var res = Mapper.Map<IEnumerable<CommoditiesByCategoryDTO>>(commod);
 
-            return res.OrderBy(c => c.CommodityDTO.Price);
+            var res = Mapper.Map<IEnumerable<CommoditiesByCategoryDto>>(commod);
+
+            return res.OrderBy(c => c.CommodityDto.Price);
         }
 
-        public IEnumerable<CommoditiesByCategoryDTO> GetCompositions()
+        public IEnumerable<CommoditiesByCategoryDto> GetCompositions()
         {
             Mapper.Initialize(cfg => {
-                cfg.CreateMap<Category, CategoryDTO>();
-                cfg.CreateMap<Commodities, CommodityDTO>();
+                cfg.CreateMap<CategoryEntity, CategoryDto>();
+                cfg.CreateMap<CommoditiesEntity, CommodityDto>();
             });
 
-            var commodities = Mapper.Map<IEnumerable<Commodities>, List<CommodityDTO>>(Database.Commodities.GetAll());
-            var categories = Mapper.Map<IEnumerable<Category>, List<CategoryDTO>>(Database.Categories.GetAll());
-
+            var commodities = Mapper.Map<IEnumerable<CommoditiesEntity>, List<CommodityDto>>(Database.Commodities.GetAll());
+            var categories = Mapper.Map<IEnumerable<CategoryEntity>, List<CategoryDto>>(Database.Categories.GetAll());
 
             var commod = from c in categories
-                         join cm in commodities on c.id_Category equals cm.id_Category
-                         where cm.IsHandMade.Equals(false) && c.Title.Equals("Flower composition")
-                         select new CommoditiesByCategoryDTO
+                         join cm in commodities on c.CategoryId equals cm.CategoryId
+                         where cm.IsHandMade.Equals(false) && c.Name.Equals("Flower composition")
+                         select new CommoditiesByCategoryDto
                          {
-                             CommodityDTO = cm
+                             CommodityDto = cm
                          };
-            var res = Mapper.Map<IEnumerable<CommoditiesByCategoryDTO>>(commod);
 
-            return res.OrderBy(c => c.CommodityDTO.Price);
+            var res = Mapper.Map<IEnumerable<CommoditiesByCategoryDto>>(commod);
+
+            return res.OrderBy(c => c.CommodityDto.Price);
         }
 
-        public IEnumerable<CommoditiesByCategoryDTO> GetDreamBouquet()
+        public IEnumerable<CommoditiesByCategoryDto> GetDreamBouquet()
         {
             Mapper.Initialize(cfg => {
-                cfg.CreateMap<Category, CategoryDTO>();
-                cfg.CreateMap<Commodities, CommodityDTO>();
+                cfg.CreateMap<CategoryEntity, CategoryDto>();
+                cfg.CreateMap<CommoditiesEntity, CommodityDto>();
             });
 
-            var commodities = Mapper.Map<IEnumerable<Commodities>, List<CommodityDTO>>(Database.Commodities.GetAll());
-            var categories = Mapper.Map<IEnumerable<Category>, List<CategoryDTO>>(Database.Categories.GetAll());
+            var commodities = Mapper.Map<IEnumerable<CommoditiesEntity>, List<CommodityDto>>(Database.Commodities.GetAll());
+            var categories = Mapper.Map<IEnumerable<CategoryEntity>, List<CategoryDto>>(Database.Categories.GetAll());
 
 
             var commod = from c in categories
-                         join cm in commodities on c.id_Category equals cm.id_Category
+                         join cm in commodities on c.CategoryId equals cm.CategoryId
                          where cm.IsHandMade.Equals(true)
-                         select new CommoditiesByCategoryDTO
+                         select new CommoditiesByCategoryDto
                          {
-                             CommodityDTO = cm
+                             CommodityDto = cm
                          };
-            var res = Mapper.Map<IEnumerable<CommoditiesByCategoryDTO>>(commod);
 
-            return res.OrderBy(c => c.CommodityDTO.Price);
+            var res = Mapper.Map<IEnumerable<CommoditiesByCategoryDto>>(commod);
+
+            return res.OrderBy(c => c.CommodityDto.Price);
         }
 
         public void Dispose()

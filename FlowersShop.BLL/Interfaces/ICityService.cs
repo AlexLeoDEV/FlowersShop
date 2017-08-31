@@ -1,23 +1,16 @@
-﻿using FlowersShop.BLL.DTO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Mvc;
-
-namespace FlowersShop.BLL.Interfaces
+﻿namespace FlowersShop.BLL.Interfaces
 {
+    using FlowersShop.BLL.DTO;
+    using System.Collections.Generic;
+
     public interface ICityService
     {
-        CityDTO GetCity(int? id);
-        IEnumerable<CityDTO> GetCities();
-        void Create(CityDTO city);
+        CityDto GetCity(int? id);
+        IEnumerable<CityDto> GetCities();
+        void Create(CityDto city);
         void Delete(int id);
-        void Update(CityDTO city);
+        void Update(CityDto city);
         void Dispose();
-
-        //SelectList GetListClients();
         IEnumerable<string> GetCityName();
     }
 }

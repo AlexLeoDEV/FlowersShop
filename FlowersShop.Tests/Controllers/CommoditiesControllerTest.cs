@@ -27,7 +27,7 @@ namespace FlowersShop.Tests.Controllers
             string colours = "All";
             int page = 1;
             var mock = new Mock<ICommoditiesService>();
-            mock.Setup(a => a.GetCommodities()).Returns(new List<CommodityDTO>());
+            mock.Setup(a => a.GetCommodities()).Returns(new List<CommodityDto>());
             controller = new CommoditiesController(mock.Object);
 
             // Act
