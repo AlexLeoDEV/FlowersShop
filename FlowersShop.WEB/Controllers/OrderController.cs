@@ -23,9 +23,9 @@ namespace FlowersShop.WEB.Controllers
 
         public ActionResult Index()
         {
-            IEnumerable<OrderDTO> orderDtos = orderService.GetOrders();
-            Mapper.Initialize(cfg => cfg.CreateMap<OrderDTO, OrderViewModel>());
-            var order = Mapper.Map<IEnumerable<OrderDTO>, List<OrderViewModel>>(orderDtos);
+            IEnumerable<OrderDto> orderDtos = orderService.GetOrders();
+            Mapper.Initialize(cfg => cfg.CreateMap<OrderDto, OrderViewModel>());
+            var order = Mapper.Map<IEnumerable<OrderDto>, List<OrderViewModel>>(orderDtos);
 
             return View(order);
         }
@@ -40,7 +40,7 @@ namespace FlowersShop.WEB.Controllers
 
             OrderViewModel model = new OrderViewModel
             {
-                id_Commodities = commodity.id_Commodities,
+                id_Commodities = commodity.CommodityId,
                 Quantity = 1,
                 FullPrice = commodity.Price
             };
@@ -49,9 +49,9 @@ namespace FlowersShop.WEB.Controllers
         }
 
         [HttpPost]
-        public ActionResult Buy(OrderDTO order)
+        public ActionResult Buy(OrderDto order)
         {
-            order.id_Client = 1;
+            order.ClientId = 1;
             order.OrderTime = DateTime.Now;
             orderService.Create(order);
             return RedirectToAction("Index");

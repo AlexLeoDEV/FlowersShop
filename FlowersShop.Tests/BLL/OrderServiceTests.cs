@@ -22,7 +22,7 @@ namespace FlowersShop.Tests.BLL
         {
             //Arrange
             var mock = new Mock<IUnitOfWork>();
-            mock.Setup(c => c.Orders.GetAll()).Returns(new List<Order>());
+            mock.Setup(c => c.Orders.GetAll()).Returns(new List<OrderEntity>());
 
             //Act
             ordersService = new OrderService(mock.Object);
@@ -40,7 +40,7 @@ namespace FlowersShop.Tests.BLL
             var mock = new Mock<IUnitOfWork>();
 
             //Act
-            mock.Setup(a => a.Orders.Get(orderId)).Returns(new Order());
+            mock.Setup(a => a.Orders.Get(orderId)).Returns(new OrderEntity());
             ordersService = new OrderService(mock.Object);
 
             var result = ordersService.GetOrder(orderId);

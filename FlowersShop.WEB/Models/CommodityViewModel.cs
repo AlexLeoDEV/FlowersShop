@@ -24,9 +24,9 @@ namespace FlowersShop.WEB.Models
 
         public string Preferences { get; set; }
 
-        public Category Category { get; set; }
+        public CategoryEntity Category { get; set; }
 
-        public ICollection<Order> Order { get; set; }
+        public ICollection<OrderEntity> Order { get; set; }
     }
     public class CommoditiesFilter
     {

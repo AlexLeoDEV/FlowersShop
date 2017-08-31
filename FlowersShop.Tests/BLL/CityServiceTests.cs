@@ -1,24 +1,21 @@
-﻿using FlowersShop.BLL.DTO;
-using FlowersShop.BLL.Services;
-using FlowersShop.DAL.Entities;
-using FlowersShop.DAL.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FlowersShop.Tests.BLL
+﻿namespace FlowersShop.Tests.BLL
 {
+    using FlowersShop.BLL.DTO;
+    using FlowersShop.BLL.Services;
+    using FlowersShop.DAL.Entities;
+    using FlowersShop.DAL.Interfaces;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using Moq;
+    using System.Collections.Generic;
+
     [TestClass]
     public class CityServiceTests
     {
-        private CityService cityService;
-        CityDTO newCity = new CityDTO
+        private CityService _cityService;
+
+        CityDto newCity = new CityDto
         {
-            id_City = 6,
+            CityId = 6,
             Title = "Ternivka",
             Price = 400M
         };
@@ -28,11 +25,11 @@ namespace FlowersShop.Tests.BLL
         {
             //Arrange
             var mock = new Mock<IUnitOfWork>();
-            mock.Setup(c => c.Cities.GetAll()).Returns(new List<City>());
+            mock.Setup(c => c.Cities.GetAll()).Returns(new List<CityEntity>());
 
             //Act
-            cityService = new CityService(mock.Object);
-            var result = cityService.GetCities();
+            _cityService = new CityService(mock.Object);
+            var result = _cityService.GetCities();
 
             //Assert
             Assert.IsNotNull(result);
@@ -46,10 +43,10 @@ namespace FlowersShop.Tests.BLL
             var mock = new Mock<IUnitOfWork>();
 
             //Act
-            mock.Setup(a => a.Cities.Get(cityId)).Returns(new City());
-            cityService = new CityService(mock.Object);
+            mock.Setup(a => a.Cities.Get(cityId)).Returns(new CityEntity());
+            _cityService = new CityService(mock.Object);
 
-            var result = cityService.GetCity(cityId);
+            var result = _cityService.GetCity(cityId);
 
             //Assert
             Assert.IsNotNull(result);
@@ -59,71 +56,71 @@ namespace FlowersShop.Tests.BLL
         public void Create_city_succeeded()
         {
             //Arrange
-            bool IsErrorOccured = true;
+            var isErrorOccured = true;
             var mock = new Mock<IUnitOfWork>();            
 
             //Act 
-            mock.Setup(c => c.Cities.Create(It.Is<City>(cl => (cl.id_City == newCity.id_City) &&
-                                                        (cl.Title == newCity.Title) &&
-                                                        (cl.Price == newCity.Price)
-                                                  ))).Callback(() => IsErrorOccured = false);
-            cityService = new CityService(mock.Object);
-            cityService.Create(newCity);
+            mock.Setup(c => c.Cities.Create(It.Is<CityEntity>(cl => cl.Id == newCity.CityId 
+                                                           && cl.Name == newCity.Title 
+                                                           && cl.Price == newCity.Price)))
+                                                           .Callback(() => isErrorOccured = false);
+            _cityService = new CityService(mock.Object);
+            _cityService.Create(newCity);
 
             //Arrange
-            Assert.IsFalse(IsErrorOccured);
+            Assert.IsFalse(isErrorOccured);
         }
 
         [TestMethod]
         public void Update_city_succeeded()
         {
             //Arrange
-            bool IsErrorOccured = true;
+            var isErrorOccured = true;
             var mock = new Mock<IUnitOfWork>();
 
             //Act 
-            mock.Setup(c => c.Cities.Update(It.Is<City>(cl => (cl.id_City == newCity.id_City) &&
-                                                        (cl.Title == newCity.Title) &&
-                                                        (cl.Price == newCity.Price)
-                                                  ))).Callback(() => IsErrorOccured = false);
-            cityService = new CityService(mock.Object);
-            cityService.Update(newCity);
+            mock.Setup(c => c.Cities.Update(It.Is<CityEntity>(cl => cl.Id == newCity.CityId 
+                                                            && cl.Name == newCity.Title 
+                                                            && cl.Price == newCity.Price)))
+                                                            .Callback(() => isErrorOccured = false);
+            _cityService = new CityService(mock.Object);
+            _cityService.Update(newCity);
 
             //Arrange
-            Assert.IsFalse(IsErrorOccured);
+            Assert.IsFalse(isErrorOccured);
         }
 
         [TestMethod]
         public void Delete_city_succeeded()
         {
             //Arrange
-            bool IsErrorOccured = true;
+            var isErrorOccured = true;
             var mock = new Mock<IUnitOfWork>();
             var cityId = 1;
 
             //Act and Arrange
-            mock.Setup(c => c.Cities.Delete(cityId)).Callback(() => IsErrorOccured = false);
-            cityService = new CityService(mock.Object);
-            cityService.Delete(cityId);
+            mock.Setup(c => c.Cities.Delete(cityId)).Callback(() => isErrorOccured = false);
+            _cityService = new CityService(mock.Object);
+            _cityService.Delete(cityId);
 
             //Arrange
-            Assert.IsFalse(IsErrorOccured);
+            Assert.IsFalse(isErrorOccured);
         }
 
         [TestMethod]
         public void Dispose_city_succeeded()
         {
             //Arrange
-            bool IsErrorOccured = true;
+            var isErrorOccured = true;
             var mock = new Mock<IUnitOfWork>();
 
             //Act
-            mock.Setup(c => c.Dispose()).Callback(() => IsErrorOccured = false);
-            cityService = new CityService(mock.Object);
-            cityService.Dispose();
+            mock.Setup(c => c.Dispose()).Callback(() => isErrorOccured = false);
+            _cityService = new CityService(mock.Object);
+            _cityService.Dispose();
 
             //Assert
-            Assert.IsFalse(IsErrorOccured);
+            Assert.IsFalse(isErrorOccured);
         }
     }
 }

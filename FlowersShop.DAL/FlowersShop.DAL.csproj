@@ -31,10 +31,13 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <OutputPath>..\bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>..\CodeAnalysisRules\FlowersShop.General.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -62,27 +65,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EF\FlowersShopContext.cs" />
-    <Compile Include="Entities\Category.cs" />
-    <Compile Include="Entities\City.cs" />
-    <Compile Include="Entities\Client.cs" />
-    <Compile Include="Entities\Commodities.cs" />
-    <Compile Include="Entities\Order.cs" />
+    <Compile Include="Context\EF\FlowersShopEntities.cs" />
+    <Compile Include="Context\FlowersShopDatabaseInitizlizer.cs" />
+    <Compile Include="Context\FlowersShopDatabaseMetadata.cs" />
+    <Compile Include="Context\Migrations\201708311202179_InitialCreate.cs" />
+    <Compile Include="Context\Migrations\201708311202179_InitialCreate.Designer.cs">
+      <DependentUpon>201708311202179_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Context\Migrations\SeedDataGenerator.cs" />
+    <Compile Include="Entities\CategoryEntity.cs" />
+    <Compile Include="Entities\CityEntity.cs" />
+    <Compile Include="Entities\ClientEntity.cs" />
+    <Compile Include="Entities\CommoditiesEntity.cs" />
+    <Compile Include="Entities\OrderEntity.cs" />
+    <Compile Include="Entities\ValidationConstants.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
-    <Compile Include="Migrations\201706221254131_db.cs" />
-    <Compile Include="Migrations\201706221254131_db.Designer.cs">
-      <DependentUpon>201706221254131_db.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201706281029333_db1.cs" />
-    <Compile Include="Migrations\201706281029333_db1.Designer.cs">
-      <DependentUpon>201706281029333_db1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201706281046482_db2.cs" />
-    <Compile Include="Migrations\201706281046482_db2.Designer.cs">
-      <DependentUpon>201706281046482_db2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Context\Migrations\FlowersShopContextConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />
     <Compile Include="Repositories\CityRepository.cs" />
@@ -94,17 +93,7 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201706221254131_db.resx">
-      <DependentUpon>201706221254131_db.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706281029333_db1.resx">
-      <DependentUpon>201706281029333_db1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706281046482_db2.resx">
-      <DependentUpon>201706281046482_db2.cs</DependentUpon>
-    </EmbeddedResource>
+    <None Include="stylecop.json" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
@@ -119,14 +108,16 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\ShopDB.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="App_Data\ShopDB_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>ShopDB.mdf</DependentUpon>
-    </Content>
     <Content Include="Queries\ShopDB_DATA_INSERT.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
+    <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Context\Migrations\201708311202179_InitialCreate.resx">
+      <DependentUpon>201708311202179_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

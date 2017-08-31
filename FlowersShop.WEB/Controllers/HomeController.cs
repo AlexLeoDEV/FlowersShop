@@ -26,8 +26,8 @@ namespace FlowersShop.WEB.Controllers
         public ActionResult Delivering()
         {
             var cityDtos = cityService.GetCities();
-            Mapper.Initialize(cfg => cfg.CreateMap<CityDTO, CityViewModel>());
-            var cities = Mapper.Map<IEnumerable<CityDTO>, List<CityViewModel>>(cityDtos);
+            Mapper.Initialize(cfg => cfg.CreateMap<CityDto, CityViewModel>());
+            var cities = Mapper.Map<IEnumerable<CityDto>, List<CityViewModel>>(cityDtos);
 
             return View(cities);
         }

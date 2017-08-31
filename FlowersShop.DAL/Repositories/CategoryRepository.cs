@@ -1,49 +1,48 @@
-﻿using FlowersShop.DAL.EF;
-using FlowersShop.DAL.Entities;
-using FlowersShop.DAL.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FlowersShop.DAL.Repositories
+﻿namespace FlowersShop.DAL.Repositories
 {
-    public class CategoryRepository : IRepository<Category>
+    using System.Collections.Generic;
+    using System.Linq;
+    using FlowersShop.DAL.EF;
+    using FlowersShop.DAL.Entities;
+    using FlowersShop.DAL.Interfaces;
+
+    public class CategoryRepository : IRepository<CategoryEntity>
     {
-        private FlowersShopContext db;
-        public CategoryRepository(FlowersShopContext context)
+        private FlowersShopEntities _db;
+
+        public CategoryRepository(FlowersShopEntities context)
         {
-            db = context;
+            _db = context;
         }
 
-        public void Create(Category item)
+        public void Create(CategoryEntity item)
         {
-            db.Categories.Add(item);
+            _db.Categories.Add(item);
         }
 
         public void Delete(int id)
         {
-            Category Category = db.Categories.Find(id);
-            if (Category != null)
+            CategoryEntity category = _db.Categories.Find(id);
+
+            if (category != null)
             {
-                db.Categories.Remove(Category);
+                _db.Categories.Remove(category);
             }
         }
 
-        public Category Get(int id)
+        public CategoryEntity Get(int id)
         {
-            return db.Categories.Find(id);
+            return _db.Categories.Find(id);
         }
 
-        public IEnumerable<Category> GetAll()
+        public IEnumerable<CategoryEntity> GetAll()
         {
-            return db.Categories.ToList();
+            return _db.Categories.ToList();
         }
 
-        public void Update(Category item)
+        public void Update(CategoryEntity item)
         {
-            db.Entry(item).State = System.Data.Entity.EntityState.Modified;
+            _db.Entry(item).State = System.Data.Entity.EntityState.Modified;
         }
     }
 }

@@ -1,49 +1,48 @@
-﻿using FlowersShop.DAL.EF;
-using FlowersShop.DAL.Entities;
-using FlowersShop.DAL.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FlowersShop.DAL.Repositories
+﻿namespace FlowersShop.DAL.Repositories
 {
-    public class ClientRepository : IRepository<Client>
+    using System.Collections.Generic;
+    using System.Linq;
+    using FlowersShop.DAL.EF;
+    using FlowersShop.DAL.Entities;
+    using FlowersShop.DAL.Interfaces;
+
+    public class ClientRepository : IRepository<ClientEntity>
     {
-        private FlowersShopContext db;
-        public ClientRepository(FlowersShopContext context)
+        private FlowersShopEntities _db;
+
+        public ClientRepository(FlowersShopEntities context)
         {
-            db = context;
+            _db = context;
         }
 
-        public void Create(Client item)
+        public void Create(ClientEntity item)
         {
-            db.Clients.Add(item);
+            _db.Clients.Add(item);
         }
 
         public void Delete(int id)
         {
-            Client Client = db.Clients.Find(id);
-            if (Client != null)
+            ClientEntity client = _db.Clients.Find(id);
+
+            if (client != null)
             {
-                db.Clients.Remove(Client);
+                _db.Clients.Remove(client);
             }
         }
 
-        public Client Get(int id)
+        public ClientEntity Get(int id)
         {
-            return db.Clients.Find(id);
+            return _db.Clients.Find(id);
         }
 
-        public IEnumerable<Client> GetAll()
+        public IEnumerable<ClientEntity> GetAll()
         {
-            return db.Clients.ToList();
+            return _db.Clients.ToList();
         }
 
-        public void Update(Client item)
+        public void Update(ClientEntity item)
         {
-            db.Entry(item).State = System.Data.Entity.EntityState.Modified;
+            _db.Entry(item).State = System.Data.Entity.EntityState.Modified;
         }
     }
 }

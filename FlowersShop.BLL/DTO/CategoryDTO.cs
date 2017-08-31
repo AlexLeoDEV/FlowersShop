@@ -1,19 +1,14 @@
-﻿using FlowersShop.DAL.Entities;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FlowersShop.BLL.DTO
+﻿namespace FlowersShop.BLL.DTO
 {
-    public class CategoryDTO
-    {
-        public int id_Category { get; set; }
+    using System;
+    using System.Collections.Generic;
 
-        public string Title { get; set; }
+    public class CategoryDto
+    {
+        public int CategoryId { get; set; }
+
+        public string Name { get; set; }
         
-        public ICollection<CommodityDTO> Commodities { get; set; }
+        public ICollection<CommodityDto> CommodityDto { get; set; }
     }
 }

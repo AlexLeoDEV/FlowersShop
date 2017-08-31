@@ -23,8 +23,8 @@ namespace FlowersShop.WEB.Models
 
         public int? id_City { get; set; }
 
-        public City City { get; set; }
+        public CityEntity City { get; set; }
         
-        public ICollection<Order> Order { get; set; }
+        public ICollection<OrderEntity> Order { get; set; }
     }
 }

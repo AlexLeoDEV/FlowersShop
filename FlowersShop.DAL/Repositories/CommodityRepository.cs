@@ -1,49 +1,48 @@
-﻿using FlowersShop.DAL.EF;
-using FlowersShop.DAL.Entities;
-using FlowersShop.DAL.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FlowersShop.DAL.Repositories
+﻿namespace FlowersShop.DAL.Repositories
 {
-    public class CommodityRepository : IRepository<Commodities>
+    using System.Collections.Generic;
+    using System.Linq;
+    using FlowersShop.DAL.EF;
+    using FlowersShop.DAL.Entities;
+    using FlowersShop.DAL.Interfaces;
+
+    public class CommodityRepository : IRepository<CommoditiesEntity>
     {
-        private FlowersShopContext db;
-        public CommodityRepository(FlowersShopContext context)
+        private FlowersShopEntities _db;
+
+        public CommodityRepository(FlowersShopEntities context)
         {
-            db = context;
+            _db = context;
         }
 
-        public void Create(Commodities item)
+        public void Create(CommoditiesEntity item)
         {
-            db.Commodities.Add(item);
+            _db.Commodities.Add(item);
         }
 
         public void Delete(int id)
         {
-            Commodities Commodity = db.Commodities.Find(id);
-            if (Commodity != null)
+            CommoditiesEntity commodity = _db.Commodities.Find(id);
+
+            if (commodity != null)
             {
-                db.Commodities.Remove(Commodity);
+                _db.Commodities.Remove(commodity);
             }
         }
 
-        public Commodities Get(int id)
+        public CommoditiesEntity Get(int id)
         {
-            return db.Commodities.Find(id);
+            return _db.Commodities.Find(id);
         }
 
-        public IEnumerable<Commodities> GetAll()
+        public IEnumerable<CommoditiesEntity> GetAll()
         {
-            return db.Commodities.ToList();
+            return _db.Commodities.ToList();
         }
 
-        public void Update(Commodities item)
+        public void Update(CommoditiesEntity item)
         {
-            db.Entry(item).State = System.Data.Entity.EntityState.Modified;
+            _db.Entry(item).State = System.Data.Entity.EntityState.Modified;
         }
     }
 }

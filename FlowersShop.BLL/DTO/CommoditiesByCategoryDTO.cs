@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FlowersShop.BLL.DTO
+﻿namespace FlowersShop.BLL.DTO
 {
-    public class CommoditiesByCategoryDTO
+    using System;
+
+    public class CommoditiesByCategoryDto
     {
-        public CommodityDTO CommodityDTO  { get; set;}
-        public CategoryDTO CategoryDTO { get; set; }
+        public CommodityDto CommodityDto  { get; set;}
+        public CategoryDto CategoryDto { get; set; }
     }
 }

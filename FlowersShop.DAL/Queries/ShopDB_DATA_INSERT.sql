@@ -16,8 +16,10 @@ INSERT INTO City (Title, Price) VALUES ('Kamianske', 120.0000);
 INSERT INTO City (Title, Price) VALUES ('Novomoskovsk ', 120.0000);
 INSERT INTO City (Title, Price) VALUES ('Pavlograd ', 150.0000);
 
--- Flowers Table
 
+-- Commodities Table
+
+-- Flowers
 INSERT INTO Commodities (id_Commodities,Title, Colour, Price, Description, IsHandMade, id_Category, Preferences, image) 
    SELECT 1 AS id_Commodities, 'Roses' AS Title, 'Red' AS Colour, 35.0000 AS Price, 
    'Red rose' AS Description, 1 AS IsHandMade, 5 AS id_Category, 'Beloved', '/Content/Images/Comodities/Flowers/fl1.jpg';
@@ -99,6 +101,7 @@ INSERT INTO Commodities (id_Commodities,Title, Colour, Price, Description, IsHan
 INSERT INTO Commodities (id_Commodities,Title, Colour, Price, Description, IsHandMade, id_Category, Preferences, image) 
    SELECT 20 AS id_Commodities, 'Irises' AS Title, 'Red' AS Colour, 30.0000 AS Price, 
    'Red irise' AS Description, 1 AS IsHandMade, 5 AS id_Category, 'Beloved', '~/Content/Images/Comodities/Flowers/fl20.jpg';
+
 INSERT INTO Commodities (id_Commodities,Title, Colour, Price, Description, IsHandMade, id_Category, Preferences, image) 
    SELECT 21 AS id_Commodities, 'Irises' AS Title, 'Yellow' AS Colour, 33.0000 AS Price, 
    'Yellow irise' AS Description, 1 AS IsHandMade, 5 AS id_Category, 'Beloved', '/Content/Images/Comodities/Flowers/fl21.jpg';

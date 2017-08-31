@@ -1,32 +1,29 @@
-﻿using FlowersShop.BLL.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FlowersShop.BLL.DTO;
-using FlowersShop.DAL.Interfaces;
-using FlowersShop.DAL.Entities;
-using AutoMapper;
-using FlowersShop.BLL.Infrastructure;
-
-namespace FlowersShop.BLL.Services
+﻿namespace FlowersShop.BLL.Services
 {
+    using FlowersShop.BLL.Interfaces;
+    using System.Collections.Generic;
+    using FlowersShop.BLL.DTO;
+    using FlowersShop.DAL.Interfaces;
+    using FlowersShop.DAL.Entities;
+    using AutoMapper;
+    using FlowersShop.BLL.Infrastructure;
+
     public class CategoryService : ICategoryService
     {
-        IUnitOfWork Database { get; set; }
+        public IUnitOfWork Database { get; set; }
 
         public CategoryService(IUnitOfWork uow)
         {
             Database = uow;
         }
-        public void Create(CategoryDTO category)
+        public void Create(CategoryDto category)
         {
-            Database.Categories.Create(new Category
+            Database.Categories.Create(new CategoryEntity
             {
-                id_Category = category.id_Category,
-                Title = category.Title
+                Id = category.CategoryId,
+                Name = category.Name
             });
+
             Database.Save();
         }
 
@@ -41,13 +38,13 @@ namespace FlowersShop.BLL.Services
             Database.Dispose();
         }
 
-        public IEnumerable<CategoryDTO> GetCategories()
+        public IEnumerable<CategoryDto> GetCategories()
         {
-            Mapper.Initialize(cfg => cfg.CreateMap<Category, CategoryDTO>());
-            return Mapper.Map<IEnumerable<Category>, List<CategoryDTO>>(Database.Categories.GetAll());
+            Mapper.Initialize(cfg => cfg.CreateMap<CategoryEntity, CategoryDto>());
+            return Mapper.Map<IEnumerable<CategoryEntity>, List<CategoryDto>>(Database.Categories.GetAll());
         }
 
-        public CategoryDTO GetCategory(int? id)
+        public CategoryDto GetCategory(int? id)
         {
             if (id == null)
             {
@@ -60,28 +57,32 @@ namespace FlowersShop.BLL.Services
             {
                 throw new ValidationException("Commodity id was not found", "");
             }
-            Mapper.Initialize(cfg => cfg.CreateMap<Category, CategoryDTO>());
-            return Mapper.Map<Category, CategoryDTO>(cat);
+
+            Mapper.Initialize(cfg => cfg.CreateMap<CategoryEntity, CategoryDto>());
+            return Mapper.Map<CategoryEntity, CategoryDto>(cat);
         }
 
         public IEnumerable<string> GetCategoryName()
         {
             var cat = Database.Categories.GetAll();
-            List<string> catTitle = new List<string>();
+            var catTitle = new List<string>();
+
             foreach (var item in cat)
             {
-                catTitle.Add(item.Title);
+                catTitle.Add(item.Name);
             }
+
             return catTitle;
         }
 
-        public void Update(CategoryDTO category)
+        public void Update(CategoryDto category)
         {
-            Database.Categories.Update(new Category
+            Database.Categories.Update(new CategoryEntity
             {
-                id_Category = category.id_Category,
-                Title = category.Title
+                Id = category.CategoryId,
+                Name = category.Name
             });
+
             Database.Save();
         }
     }

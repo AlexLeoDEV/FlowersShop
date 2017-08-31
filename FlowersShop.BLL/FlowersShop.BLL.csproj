@@ -16,10 +16,11 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <OutputPath>..\bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>..\CodeAnalysisRules\FlowersShop.General.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -68,12 +69,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DTO\CategoryDTO.cs" />
-    <Compile Include="DTO\CityDTO.cs" />
-    <Compile Include="DTO\ClientDTO.cs" />
-    <Compile Include="DTO\CommoditiesByCategoryDTO.cs" />
-    <Compile Include="DTO\CommodityDTO.cs" />
-    <Compile Include="DTO\OrderDTO.cs" />
+    <Compile Include="DTO\CategoryDto.cs" />
+    <Compile Include="DTO\CityDto.cs" />
+    <Compile Include="DTO\ClientDto.cs" />
+    <Compile Include="DTO\CommoditiesByCategoryDto.cs" />
+    <Compile Include="DTO\CommodityDto.cs" />
+    <Compile Include="DTO\OrderDto.cs" />
     <Compile Include="Infrastructure\ServiceModule.cs" />
     <Compile Include="Infrastructure\ValidationException.cs" />
     <Compile Include="Interfaces\ICategoryService.cs" />

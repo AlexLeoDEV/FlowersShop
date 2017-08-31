@@ -27,8 +27,8 @@ namespace FlowersShop.WEB.Models
 
         public string Address { get; set; }
 
-        public Client Client { get; set; }
+        public ClientEntity Client { get; set; }
 
-        public Commodities Commodities { get; set; }
+        public CommoditiesEntity Commodities { get; set; }
     }
 }

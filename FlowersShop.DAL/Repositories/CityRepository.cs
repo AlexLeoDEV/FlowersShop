@@ -1,46 +1,45 @@
-﻿using FlowersShop.DAL.EF;
-using FlowersShop.DAL.Entities;
-using FlowersShop.DAL.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FlowersShop.DAL.Repositories
+﻿namespace FlowersShop.DAL.Repositories
 {
-    public class CityRepository : IRepository<City>
+    using System.Collections.Generic;
+    using System.Linq;
+    using FlowersShop.DAL.EF;
+    using FlowersShop.DAL.Entities;
+    using FlowersShop.DAL.Interfaces;
+
+    public class CityRepository : IRepository<CityEntity>
     {
-        private FlowersShopContext db;
-        public CityRepository(FlowersShopContext context)
+        private FlowersShopEntities _db;
+
+        public CityRepository(FlowersShopEntities context)
         {
-            db = context;
+            _db = context;
         }
 
-        public void Create(City item)
+        public void Create(CityEntity item)
         {
-            db.Cities.Add(item);
+            _db.Cities.Add(item);
         }
 
         public void Delete(int id)
         {
-            City City = db.Cities.Find(id);            
-            db.Cities.Remove(City);
+            CityEntity city = _db.Cities.Find(id);
+
+            _db.Cities.Remove(city);
         }
 
-        public City Get(int id)
+        public CityEntity Get(int id)
         {
-            return db.Cities.Find(id);
+            return _db.Cities.Find(id);
         }
 
-        public IEnumerable<City> GetAll()
+        public IEnumerable<CityEntity> GetAll()
         {
-            return db.Cities.ToList();
+            return _db.Cities.ToList();
         }
 
-        public void Update(City item)
+        public void Update(CityEntity item)
         {
-            db.Entry(item).State = System.Data.Entity.EntityState.Modified;
+            _db.Entry(item).State = System.Data.Entity.EntityState.Modified;
         }
     }
 }

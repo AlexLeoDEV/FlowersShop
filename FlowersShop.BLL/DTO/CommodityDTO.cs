@@ -1,19 +1,13 @@
-﻿using FlowersShop.DAL.Entities;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FlowersShop.BLL.DTO
+﻿namespace FlowersShop.BLL.DTO
 {
-    public class CommodityDTO
-    {
-        public int id_Commodities { get; set; }
+    using System;
+    using System.Collections.Generic;
 
-        public string Title { get; set; }
+    public class CommodityDto
+    {
+        public int CommodityId { get; set; }
+
+        public string Name { get; set; }
 
         public string Colour { get; set; }
 
@@ -23,14 +17,14 @@ namespace FlowersShop.BLL.DTO
 
         public bool IsHandMade { get; set; }
 
-        public int id_Category { get; set; }
+        public int CategoryId { get; set; }
 
-        public string image { get; set; }
+        public string ImagePath { get; set; }
 
         public string Preferences { get; set; }
 
-        public CategoryDTO Category { get; set; }
+        public CategoryDto CategoryDto { get; set; }
 
-        public ICollection<OrderDTO> Order { get; set; }
+        public ICollection<OrderDto> OrderDto { get; set; }
     }
 }
