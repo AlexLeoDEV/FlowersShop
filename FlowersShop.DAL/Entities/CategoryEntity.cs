@@ -8,14 +8,6 @@
     public class CategoryEntity
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CategoryEntity"/> class.
-        /// </summary>
-        public CategoryEntity()
-        {
-            Commodity = new HashSet<CommoditiesEntity>();
-        }
-
-        /// <summary>
         /// Gets or sets the category id
         /// </summary>
         public int Id { get; set; }

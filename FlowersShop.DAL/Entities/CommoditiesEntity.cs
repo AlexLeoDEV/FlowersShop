@@ -8,14 +8,6 @@
     public class CommoditiesEntity
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CommoditiesEntity"/> class.
-        /// </summary>
-        public CommoditiesEntity()
-        {
-            Order = new HashSet<OrderEntity>();
-        }
-
-        /// <summary>
         /// Gets or sets commodity id
         /// </summary>
         public int Id { get; set; }
