@@ -42,8 +42,6 @@ namespace FlowersShop.WEB.App_Start
         private static IKernel CreateKernel()
         {
             var modules = new INinjectModule[] { new ServiceModule("FlowersShopEntities") };
-            //var modules = new INinjectModule[] { new ServiceModule("ShopDB") };
-            //var kernel = new StandardKernel();
             var kernel = new StandardKernel(modules);
             try
             {
