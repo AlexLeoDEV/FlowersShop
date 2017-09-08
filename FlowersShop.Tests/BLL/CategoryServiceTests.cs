@@ -18,7 +18,7 @@ namespace FlowersShop.Tests.BLL
         private CategoryService categoryService;
         CategoryDto newCategory = new CategoryDto
         {
-            CategoryId = 6,
+            Id = 6,
             Name = "New category",
         };
 
@@ -63,7 +63,7 @@ namespace FlowersShop.Tests.BLL
             
             //Act 
             mock.Setup(c => c.Categories.Create(It.Is<CategoryEntity>
-                (cl => cl.Id == newCategory.CategoryId 
+                (cl => cl.Id == newCategory.Id 
                     && cl.Name == newCategory.Name)))
                     .Callback(() => isErrorOccured = false);
             categoryService = new CategoryService(mock.Object);
@@ -82,7 +82,7 @@ namespace FlowersShop.Tests.BLL
 
             //Act 
             mock.Setup(c => c.Categories.Update(It.Is<CategoryEntity>
-                (cl => cl.Id == newCategory.CategoryId 
+                (cl => cl.Id == newCategory.Id 
                 && cl.Name == newCategory.Name)))
                 .Callback(() => IsErrorOccured = false);
             categoryService = new CategoryService(mock.Object);

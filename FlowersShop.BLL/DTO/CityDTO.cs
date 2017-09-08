@@ -4,10 +4,10 @@
 
     public class CityDto
     {
-        public int CityId { get; set; }
+        public int Id { get; set; }
 
-        public string Title { get; set; }
+        public string Name { get; set; }
 
-        public decimal Price { get; set; }
+        public decimal DeliveryPrice { get; set; }
     }
 }

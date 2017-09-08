@@ -40,7 +40,7 @@ namespace FlowersShop.WEB.Controllers
 
             OrderViewModel model = new OrderViewModel
             {
-                id_Commodities = commodity.CommodityId,
+                CommodityId = commodity.Id,
                 Quantity = 1,
                 FullPrice = commodity.Price
             };

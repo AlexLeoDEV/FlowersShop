@@ -25,7 +25,7 @@ namespace FlowersShop.WEB.Helpers
                     tag.AddCssClass("btn-primary");
                 }
                 tag.AddCssClass("btn btn-default");
-                result.Append(tag.ToString());
+                result.Append(tag);
             }
             return MvcHtmlString.Create(result.ToString());
         }

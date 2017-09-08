@@ -20,7 +20,7 @@ namespace FlowersShop.Tests.BLL
 
         ClientDto newClient = new ClientDto
         {
-            ClientId = 2,
+            Id = 2,
             Name = "Petro",
             CellPhone = "0995566445",
             Email = "email@hot.org",
@@ -69,7 +69,7 @@ namespace FlowersShop.Tests.BLL
             var mock = new Mock<IUnitOfWork>();            
            
             //Act 
-            mock.Setup(c => c.Clients.Create(It.Is<ClientEntity>(cl => (cl.Id == newClient.ClientId) &&
+            mock.Setup(c => c.Clients.Create(It.Is<ClientEntity>(cl => (cl.Id == newClient.Id) &&
                                                         cl.Name == newClient.Name &&
                                                         cl.CellPhone == newClient.CellPhone &&
                                                         cl.Email == newClient.Email &&
@@ -93,7 +93,7 @@ namespace FlowersShop.Tests.BLL
             var mock = new Mock<IUnitOfWork>();
 
             //Act 
-            mock.Setup(c => c.Clients.Update(It.Is<ClientEntity>(cl => cl.Id == newClient.ClientId 
+            mock.Setup(c => c.Clients.Update(It.Is<ClientEntity>(cl => cl.Id == newClient.Id 
                                                                 && cl.Name == newClient.Name 
                                                                 && cl.CellPhone == newClient.CellPhone 
                                                                 && cl.Email == newClient.Email 

@@ -163,6 +163,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_GlobalResources\CommoditiesView.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CommoditiesView.resx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
@@ -177,11 +182,16 @@
     </Compile>
     <Compile Include="Helpers\PagingHelper.cs" />
     <Compile Include="Models\Additional\PagingInfo.cs" />
-    <Compile Include="Models\CategoryViewModel.cs" />
-    <Compile Include="Models\CityViewModel.cs" />
-    <Compile Include="Models\ClientViewModel.cs" />
-    <Compile Include="Models\CommodityViewModel.cs" />
-    <Compile Include="Models\OrderViewModel.cs" />
+    <Compile Include="Models\Categories\CategoryViewModel.cs" />
+    <Compile Include="Models\Cities\CityViewModel.cs" />
+    <Compile Include="Models\Clients\ClientViewModel.cs" />
+    <Compile Include="Models\Commodities\CommodityCollectionRefererViewModel.cs" />
+    <Compile Include="Models\Commodities\CommodityCollectionViewModel.cs" />
+    <Compile Include="Models\Commodities\CommodityRefererViewModel.cs" />
+    <Compile Include="Models\Commodities\CommodityViewModel.cs" />
+    <Compile Include="Models\Generic\RefererViewModel.cs" />
+    <Compile Include="Models\Orders\OrderViewModel.cs" />
+    <Compile Include="Models\Commodities\CommodityItemViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\NinjectDependencyResolver.cs" />
   </ItemGroup>
@@ -361,6 +371,13 @@
       <Project>{45f67bb3-7df4-4f9f-a1cb-320c9822159e}</Project>
       <Name>FlowersShop.DAL</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\CommoditiesView.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>CommoditiesView.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

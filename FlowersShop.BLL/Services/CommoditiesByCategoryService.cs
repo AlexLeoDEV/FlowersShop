@@ -29,7 +29,7 @@
             var categories = Mapper.Map<IEnumerable<CategoryEntity>, List<CategoryDto>>(Database.Categories.GetAll());
 
             var commod = from c in categories
-                         join cm in commodities on c.CategoryId equals cm.CategoryId
+                         join cm in commodities on c.Id equals cm.CategoryId
                          where cm.IsHandMade.Equals(false) && c.Name.Equals("Bouquet")
                          select new CommoditiesByCategoryDto
                          {
@@ -53,7 +53,7 @@
             var categories = Mapper.Map<IEnumerable<CategoryEntity>, List<CategoryDto>>(Database.Categories.GetAll());
 
             var commod = from c in categories
-                         join cm in commodities on c.CategoryId equals cm.CategoryId
+                         join cm in commodities on c.Id equals cm.CategoryId
                          where cm.IsHandMade.Equals(false) && c.Name.Equals("Flower basket")
                          select new CommoditiesByCategoryDto
                          {
@@ -76,7 +76,7 @@
             var categories = Mapper.Map<IEnumerable<CategoryEntity>, List<CategoryDto>>(Database.Categories.GetAll());
 
             var commod = from c in categories
-                         join cm in commodities on c.CategoryId equals cm.CategoryId
+                         join cm in commodities on c.Id equals cm.CategoryId
                          where cm.IsHandMade.Equals(false) && c.Name.Equals("Mono bouquet")
                          select new CommoditiesByCategoryDto
                          {
@@ -99,7 +99,7 @@
             var categories = Mapper.Map<IEnumerable<CategoryEntity>, List<CategoryDto>>(Database.Categories.GetAll());
 
             var commod = from c in categories
-                         join cm in commodities on c.CategoryId equals cm.CategoryId
+                         join cm in commodities on c.Id equals cm.CategoryId
                          where cm.IsHandMade.Equals(false) && c.Name.Equals("Flower composition")
                          select new CommoditiesByCategoryDto
                          {
@@ -123,7 +123,7 @@
 
 
             var commod = from c in categories
-                         join cm in commodities on c.CategoryId equals cm.CategoryId
+                         join cm in commodities on c.Id equals cm.CategoryId
                          where cm.IsHandMade.Equals(true)
                          select new CommoditiesByCategoryDto
                          {

@@ -1,72 +1,83 @@
-﻿using AutoMapper;
-using FlowersShop.BLL.DTO;
-using FlowersShop.BLL.Interfaces;
-using FlowersShop.DAL.Entities;
-using FlowersShop.WEB.Code;
-using FlowersShop.WEB.Models;
-using FlowersShop.WEB.Models.Additional;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
-
-namespace FlowersShop.WEB.Controllers
+﻿namespace FlowersShop.WEB.Controllers
 {
+    using AutoMapper;
+    using FlowersShop.BLL.DTO;
+    using FlowersShop.BLL.Interfaces;
+    using FlowersShop.WEB.Code;
+    using FlowersShop.WEB.Models;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Net;
+    using System.Web.Mvc;
+    using FlowersShop.WEB.Models.Commodities;
 
+    /// <summary>
+    /// Defines commodities controller
+    /// </summary>
     public class CommoditiesController : Controller
     {
-        ICommoditiesService commoditiesService;
+        private readonly ICommoditiesService _commoditiesService;
 
-        public int pageSize = 8;
+        private const int MAX_ITEMS_ON_PAGE = 8;
 
-        public CommoditiesController(ICommoditiesService srv)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CommoditiesController"/> class
+        /// </summary>
+        /// <param name="commoditiesService">The interface reference of commodities service</param>
+        public CommoditiesController(ICommoditiesService commoditiesService)
         {
-            commoditiesService = srv;
+            _commoditiesService = commoditiesService;
         }
 
         public CommoditiesController()
         {
-
         }
 
-        public ViewResult Index(string selectedColour, int page = 1)
+        /// <summary>
+        /// Gets commodities list from CommoditiesService
+        /// </summary>
+        /// <param name="searchCommodity"></param>
+        /// <param name="page"></param>
+        /// <returns></returns>
+        public ViewResult Index(string searchCommodity, int page = 1)
         {
-            IEnumerable<CommodityDto> commodDtos = commoditiesService.GetCommodities();                 
-            Mapper.Initialize(cfg => cfg.CreateMap<CommodityDto, CommodityViewModel>());
-            var commodity = Mapper.Map<IEnumerable<CommodityDto>, List<CommodityViewModel>>(commodDtos);
-            IEnumerable<CommodityViewModel> commoditiesList;
+            var commodities = GetCommodityCollectionViewModel(page, searchCommodity);
+            var referrerViewModel =  new CommodityCollectionRefererViewModel(commodities, HttpContext.Request.RawUrl);
 
-            commoditiesList = FilterService.CheckFilter(selectedColour) == true ?
-                commodity.Where(c => c.Colour.Equals(selectedColour)) : commodity;
+            return View(referrerViewModel);
+        }
 
-            CommoditiesFilter model = new CommoditiesFilter
+        /// <summary>
+        /// Gets details for specific commodity
+        /// </summary>
+        /// <param name="id">Commodity Id</param>
+        /// <param name="returnUrl">URL for back link</param>
+        /// <returns>View with specific player.</returns>
+        public ActionResult Details(int id, string returnUrl = "")
+        {
+            var commodity = _commoditiesService.GetCommodity(id);
+
+            if (commodity == null)
             {
-                Commodities = commoditiesList.OrderBy(item => item.id_Commodities)
-                    .Skip((page - 1) * pageSize)
-                    .Take(pageSize),
+                return HttpNotFound();
+            }
 
-                PgInfo = new PagingInfo
-                {
-                    CurrentPage = page,
-                    ItemsPerPage = pageSize,
-                    TotalItems = commoditiesService.GetCommoditiesQuantity()
-                },
-            };
-
+            var model = new CommodityRefererViewModel(commodity, HttpContext.Request.RawUrl);
             return View(model);
         }
 
-        public ActionResult Details(int? id)
+        private CommodityCollectionViewModel GetCommodityCollectionViewModel(int? page, string textToSearch = "")
         {
-            if (id == null)
+            var allCommodities = _commoditiesService.GetCommodities();
+
+            if (!string.IsNullOrEmpty(textToSearch))
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                textToSearch = textToSearch.Trim();
+                allCommodities = allCommodities.Where(p => (p.Name).Contains(textToSearch)
+                                                   || (p.Name).Contains(textToSearch));
             }
 
-            var commodity = commoditiesService.GetCommodity(id);
-            return View(commodity);
-        }                
+            return new CommodityCollectionViewModel(allCommodities, page, MAX_ITEMS_ON_PAGE, textToSearch);
+        }
     }
 }

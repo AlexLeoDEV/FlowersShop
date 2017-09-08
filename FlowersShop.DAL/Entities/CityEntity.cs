@@ -20,7 +20,7 @@
         /// <summary>
         /// Gets or sets specific delivery price in the city
         /// </summary>
-        public decimal Price { get; set; }
+        public decimal DeliveryPrice { get; set; }
 
         /// <summary>
         /// Gets or sets client which this city is

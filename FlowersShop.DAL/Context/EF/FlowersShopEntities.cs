@@ -114,7 +114,7 @@
 
             // Price
             modelBuilder.Entity<CityEntity>()
-                .Property(t => t.Price)
+                .Property(t => t.DeliveryPrice)
                 .IsRequired()
                 .HasColumnType(FlowersShopDatabaseMetadata.MONEY_COLUMN_TYPE);
         }
@@ -165,7 +165,7 @@
 
             // CityId
             modelBuilder.Entity<ClientEntity>()
-                .Property(t => t.Age)
+                .Property(t => t.CityId)
                 .IsRequired()
                 .HasColumnType(FlowersShopDatabaseMetadata.INT_COLUMN_TYPE);
 

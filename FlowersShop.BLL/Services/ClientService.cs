@@ -45,7 +45,7 @@
         {
             Database.Clients.Create(new ClientEntity
             {
-                Id = client.ClientId,
+                Id = client.Id,
                 Name = client.Name,
                 CellPhone = client.CellPhone,
                 Email = client.Email,
@@ -67,7 +67,7 @@
         {
             Database.Clients.Update(new ClientEntity
             {
-                Id = client.ClientId,
+                Id = client.Id,
                 Name = client.Name,
                 CellPhone = client.CellPhone,
                 Email = client.Email,

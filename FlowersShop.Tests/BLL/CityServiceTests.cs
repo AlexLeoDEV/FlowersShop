@@ -15,9 +15,9 @@
 
         CityDto newCity = new CityDto
         {
-            CityId = 6,
-            Title = "Ternivka",
-            Price = 400M
+            Id = 6,
+            Name = "Ternivka",
+            DeliveryPrice = 400M
         };
 
         [TestMethod]
@@ -60,9 +60,9 @@
             var mock = new Mock<IUnitOfWork>();            
 
             //Act 
-            mock.Setup(c => c.Cities.Create(It.Is<CityEntity>(cl => cl.Id == newCity.CityId 
-                                                           && cl.Name == newCity.Title 
-                                                           && cl.Price == newCity.Price)))
+            mock.Setup(c => c.Cities.Create(It.Is<CityEntity>(cl => cl.Id == newCity.Id 
+                                                           && cl.Name == newCity.Name 
+                                                           && cl.DeliveryPrice == newCity.DeliveryPrice)))
                                                            .Callback(() => isErrorOccured = false);
             _cityService = new CityService(mock.Object);
             _cityService.Create(newCity);
@@ -79,9 +79,9 @@
             var mock = new Mock<IUnitOfWork>();
 
             //Act 
-            mock.Setup(c => c.Cities.Update(It.Is<CityEntity>(cl => cl.Id == newCity.CityId 
-                                                            && cl.Name == newCity.Title 
-                                                            && cl.Price == newCity.Price)))
+            mock.Setup(c => c.Cities.Update(It.Is<CityEntity>(cl => cl.Id == newCity.Id 
+                                                            && cl.Name == newCity.Name 
+                                                            && cl.DeliveryPrice == newCity.DeliveryPrice)))
                                                             .Callback(() => isErrorOccured = false);
             _cityService = new CityService(mock.Object);
             _cityService.Update(newCity);

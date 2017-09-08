@@ -20,7 +20,7 @@
         {
             Database.Categories.Create(new CategoryEntity
             {
-                Id = category.CategoryId,
+                Id = category.Id,
                 Name = category.Name
             });
 
@@ -79,7 +79,7 @@
         {
             Database.Categories.Update(new CategoryEntity
             {
-                Id = category.CategoryId,
+                Id = category.Id,
                 Name = category.Name
             });
 
