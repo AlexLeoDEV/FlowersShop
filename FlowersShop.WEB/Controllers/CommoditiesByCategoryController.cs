@@ -1,18 +1,22 @@
-﻿using AutoMapper;
-using FlowersShop.BLL.DTO;
-using FlowersShop.BLL.Interfaces;
-using FlowersShop.WEB.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-
-namespace FlowersShop.WEB.Controllers
+﻿namespace FlowersShop.WEB.Controllers
 {
+    using FlowersShop.BLL.DTO;
+    using FlowersShop.BLL.Interfaces;
+    using FlowersShop.WEB.Models;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web;
+    using System.Web.Mvc;
+
+    /// <summary>
+    /// 
+    /// </summary>
     public class CommoditiesByCategoryController : Controller
     {
         ICommoditiesByCategory commoditiesByCategory;
+
+
         public CommoditiesByCategoryController(ICommoditiesByCategory cbc)
         {
             commoditiesByCategory = cbc;

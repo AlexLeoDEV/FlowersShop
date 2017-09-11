@@ -172,15 +172,14 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Code\FilterService.cs" />
     <Compile Include="Controllers\CommoditiesByCategoryController.cs" />
-    <Compile Include="Controllers\CommoditiesController.cs" />
+    <Compile Include="Controllers\Domain\CommoditiesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\NavigationController.cs" />
+    <Compile Include="Controllers\Domain\OrderController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\PagingHelper.cs" />
     <Compile Include="Models\Additional\PagingInfo.cs" />
     <Compile Include="Models\Categories\CategoryViewModel.cs" />
     <Compile Include="Models\Cities\CityViewModel.cs" />
@@ -190,6 +189,7 @@
     <Compile Include="Models\Commodities\CommodityRefererViewModel.cs" />
     <Compile Include="Models\Commodities\CommodityViewModel.cs" />
     <Compile Include="Models\Generic\RefererViewModel.cs" />
+    <Compile Include="Models\Menu\MenuItemViewModel.cs" />
     <Compile Include="Models\Orders\OrderViewModel.cs" />
     <Compile Include="Models\Commodities\CommodityItemViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -284,7 +284,10 @@
     <Content Include="Content\Images\Sliders\img5.jpg" />
     <Content Include="Content\Images\Socials\footer_fb_icon.png" />
     <Content Include="Content\Images\Socials\footer_twitter_icon.png" />
+    <Content Include="Content\Images\Themes\bouquets-for-birthday.jpg" />
+    <Content Include="Content\Images\Themes\flower_background_pattern.png" />
     <Content Include="Content\Images\Themes\home_content_bg-min.jpg" />
+    <Content Include="Content\Images\Themes\roses_small.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -355,6 +358,9 @@
     <Content Include="Views\Commodities\Index.cshtml" />
     <Content Include="Views\Order\Buy.cshtml" />
     <Content Include="Views\Order\Delete.cshtml" />
+    <Content Include="Views\Navigation\Menu.cshtml" />
+    <Content Include="Views\Navigation\Carousel.cshtml" />
+    <Content Include="Views\Shared\_Navigation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

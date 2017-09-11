@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CommoditiesIndexTitle" xml:space="preserve">
-    <value>Commodities</value>
+    <value>Flower Shop</value>
   </data>
   <data name="NotFoundCommodity" xml:space="preserve">
     <value>Item with this name was not found</value>

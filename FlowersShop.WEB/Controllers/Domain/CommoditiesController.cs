@@ -1,15 +1,9 @@
 ﻿namespace FlowersShop.WEB.Controllers
 {
-    using AutoMapper;
-    using FlowersShop.BLL.DTO;
-    using FlowersShop.BLL.Interfaces;
-    using FlowersShop.WEB.Code;
-    using FlowersShop.WEB.Models;
-    using System.Collections.Generic;
+    using BLL.Interfaces;
     using System.Linq;
-    using System.Net;
     using System.Web.Mvc;
-    using FlowersShop.WEB.Models.Commodities;
+    using Models.Commodities;
 
     /// <summary>
     /// Defines commodities controller

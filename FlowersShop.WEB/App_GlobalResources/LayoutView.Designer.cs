@@ -22,14 +22,14 @@ namespace Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Web.Application.StronglyTypedResourceProxyBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class CommoditiesView {
+    internal class LayoutView {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal CommoditiesView() {
+        internal LayoutView() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Resources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Resources.CommoditiesView", global::System.Reflection.Assembly.Load("App_GlobalResources"));
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Resources.LayoutView", global::System.Reflection.Assembly.Load("App_GlobalResources"));
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -63,27 +63,9 @@ namespace Resources {
         /// <summary>
         ///   Looks up a localized string similar to Flower Shop.
         /// </summary>
-        internal static string CommoditiesIndexTitle {
+        internal static string SiteLogo {
             get {
-                return ResourceManager.GetString("CommoditiesIndexTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Item with this name was not found.
-        /// </summary>
-        internal static string NotFoundCommodity {
-            get {
-                return ResourceManager.GetString("NotFoundCommodity", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Enter text to search.
-        /// </summary>
-        internal static string SearchTitle {
-            get {
-                return ResourceManager.GetString("SearchTitle", resourceCulture);
+                return ResourceManager.GetString("SiteLogo", resourceCulture);
             }
         }
     }
