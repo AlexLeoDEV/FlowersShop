@@ -21,8 +21,8 @@
         {
             Database.Orders.Create(new OrderEntity
             {
-                Id = order.OrderId,
-                CommodityId = order.CommoditiesId,
+                Id = order.Id,
+                CommodityId = order.CommodityId,
                 OrderTime = DateTime.Now,
                 Quantity = order.Quantity,
                 FullPrice = order.Quantity,
@@ -73,8 +73,8 @@
         {
             Database.Orders.Update(new OrderEntity
             {
-                Id = order.OrderId,
-                CommodityId = order.CommoditiesId,
+                Id = order.Id,
+                CommodityId = order.CommodityId,
                 OrderTime = DateTime.Now,
                 Quantity = order.Quantity,
                 FullPrice = order.Quantity,

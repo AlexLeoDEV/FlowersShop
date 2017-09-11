@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace FlowersShop.WEB.Models.Additional
+﻿namespace FlowersShop.WEB.Models.Additional
 {
+    using System;
+
     public class PagingInfo
     {
         public int CurrentPage { get; set; }

@@ -15,7 +15,7 @@ namespace FlowersShop.Tests
         private CommoditiesService commService;
         CommodityDto newCommodity = new CommodityDto
         {
-            CommodityId = 2,
+            Id = 2,
             Name = "Rose",
             Colour = "Red",
             Price = 50M,
@@ -67,7 +67,7 @@ namespace FlowersShop.Tests
 
             //Act 
             mock.Setup(c => c.Commodities.Create(It.Is<CommoditiesEntity>(cl => 
-                                                        cl.Id == newCommodity.CommodityId 
+                                                        cl.Id == newCommodity.Id 
                                                         && cl.Name == newCommodity.Name 
                                                         && cl.Colour == newCommodity.Colour 
                                                         && cl.Price == newCommodity.Price 
@@ -94,7 +94,7 @@ namespace FlowersShop.Tests
 
             //Act 
             mock.Setup(c => c.Commodities.Update(It.Is<CommoditiesEntity>(cl => 
-                                                        cl.Id == newCommodity.CommodityId 
+                                                        cl.Id == newCommodity.Id 
                                                         && cl.Name == newCommodity.Name 
                                                         && cl.Colour == newCommodity.Colour 
                                                         && cl.Price == newCommodity.Price 

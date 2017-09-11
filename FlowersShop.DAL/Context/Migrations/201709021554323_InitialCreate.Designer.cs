@@ -13,7 +13,7 @@ namespace FlowersShop.DAL.Context.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201708311202179_InitialCreate"; }
+            get { return "201709021554323_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

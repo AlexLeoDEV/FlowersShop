@@ -4,9 +4,9 @@
 
     public class OrderDto
     {
-        public int OrderId { get; set; }
+        public int Id { get; set; }
 
-        public int CommoditiesId { get; set; }
+        public int CommodityId { get; set; }
 
         public DateTime OrderTime { get; set; }
 

@@ -1,122 +1,62 @@
-﻿<!DOCTYPE html>
-<html>
+﻿@using System.Web.UI.WebControls
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Flowering</title>
+    <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
+
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <header>
-        <div class="container" style="text-align: right;">
-            <div class="registration-panel" style="margin: 0, 5px;">
-                <a href="#">Register</a>
-                |
-                <a href="#">Login</a>
-            </div>
-        </div>
-    </header>
-    <div class="container">
-        <div class="jumbotron" style="background-color: #efecdb; padding-top:15px; height: 13em">
-            <p style="text-align:right; font-size:0.8em;"><a href="@Url.Action("Index","Order")" class="glyphicon glyphicon-shopping-cart">Cart</a></p>
-            <h1>@Html.ActionLink("Flowering", "Index", "Commodities")</h1>
-            <p class="lead">Welcome to our shop!</p>
-        </div>
-        <div class="navbar navbar-inverse">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("About us", "About", "Home")</li>
-                        <li>@Html.ActionLink("Our services", "Services", "Home")</li>
-                        <li>@Html.ActionLink("Delivering by cities", "Delivering", "Home")</li>
-                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-            <!-- Slides -->
-            <div class="carousel-inner" role="listbox">
-                <div class="item active">
-                    <img src="~/Content/Images/Sliders/img1.jpg" alt="">
-                </div>
-                <div class="item">
-                    <img src="~/Content/Images/Sliders/img2.jpg" alt="">
-                </div>
-                <div class="item">
-                    <img src="~/Content/Images/Sliders/img3.jpg" alt="">
-                </div>
-                <div class="item">
-                    <img src="~/Content/Images/Sliders/img4.jpg" alt="">
-                </div>
-                <div class="item">
-                    <img src="~/Content/Images/Sliders/img5.jpg" alt="">
-                </div>
-            </div>
+<div id="main-wrapper">
+        <!-- Header with navigation -->
+        @Html.Partial("_Navigation")        
 
-            <!-- Slides indicators -->
-            <ol class="carousel-indicators">
-                <li data-target="#carousel" data-slide-to="0" class="active"></li>
-                <li data-target="#carousel" data-slide-to="1"></li>
-                <li data-target="#carousel" data-slide-to="2"></li>
-                <li data-target="#carousel" data-slide-to="3"></li>
-                <li data-target="#carousel" data-slide-to="4"></li>
-            </ol>
-
-            <!-- Slides controls -->
-            <a href="#carousel" class="left carousel-control" role="button" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left"></span>
-            </a>
-            <a href="#carousel" class="right carousel-control" role="button" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right"></span>
-            </a>
-        </div>
-    </div>
-    <div class="col-md-2">
-
-    </div>
-    <div class="container body-content">
-        <div class="col-md-10">
-            @RenderBody()
-        </div>
-    </div>
-        <hr />
-        <footer class="container" style="background: #EFECDB url(../../Content/Images/Themes/home_content_bg-min.jpg) no-repeat scroll 100% 0%; padding-top: 70px;">
-            <div class="row">
-                <div class="col-md-12">
-                    <h3>Flowering</h3>
-                    <div class="row">
-                        <div class="col-md-5">
-                            <div id="footer-social">
-                                <ul class="inline-blk">
-                                    <li><a href="https://www.facebook.com/"><img src="../../Content/Images/Socials/footer_fb_icon.png"></a></li>
-                                    <li><a href="https://twitter.com/"><img src="../../Content/Images/Socials/footer_twitter_icon.png"></a></li>
-                                </ul>
-                            </div>
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row" style="margin-top: 1em;">
+                    <div class="col-md-2">
+                        <div class="nav navbar-default">
+                            @{ Html.RenderAction("Menu", "Navigation"); }
                         </div>
-                        <div class="col-md-7">
-                            <ul id="menu-footer-1-menu">
-                                <li><a href="#">Home</a></li>
-                                <li><a href="#">Contact Us</a></li>
-                                <li><a href="#">About Us</a></li>
-                                <li><a href="#">Where We Deliver</a></li>
+                    </div>
+                    <div class="col-md-10">                    
+                        @RenderBody()    
+                    </div>
+                </div> <!-- /.row -->                
+            </div> <!-- /.container-fluid -->
+        </div> <!-- /#page-wrapper -->
+    </div>  <!-- /#main-wrapper -->
+<hr />
+
+    <footer class="container" style="width: 1330px; background: #EFECDB url(../../Content/Images/Themes/home_content_bg-min.jpg) no-repeat scroll 100% 0%; padding-top: 70px;">
+        <div class="row">
+            <div class="col-md-12">
+                <h3>We are in social!</h3>
+                <div class="row">
+                    <div class="col-md-5">
+                        <div id="footer-social">
+                            <ul class="social">
+                                <li><a href="https://www.facebook.com/"><img src="../../Content/Images/Socials/footer_fb_icon.png" alt="fb"></a></li>
+                                <li><a href="https://twitter.com/"><img src="../../Content/Images/Socials/footer_twitter_icon.png" alt="tw"></a></li>
                             </ul>
                         </div>
                     </div>
-                    <p style="text-align: center;">&copy; @DateTime.Now.Year - Flowering</p>
+                    <div class="col-md-7">
+                        <ul id="menu-footer-1-menu">
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Where We Deliver</a></li>
+                        </ul>
+                    </div>
                 </div>
-            </div> <!--/. row -->
-        </footer>
+                <p style="text-align: center;">&copy; @DateTime.Now.Year - Flowers Shop</p>
+            </div>
+        </div> <!--/. row -->
+    </footer>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

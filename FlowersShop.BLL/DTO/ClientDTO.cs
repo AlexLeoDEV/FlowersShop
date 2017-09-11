@@ -5,7 +5,7 @@
 
     public class ClientDto
     {
-        public int ClientId { get; set; }
+        public int Id { get; set; }
 
         public string Name { get; set; }
 

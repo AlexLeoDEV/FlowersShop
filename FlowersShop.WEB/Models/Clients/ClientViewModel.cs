@@ -9,7 +9,7 @@ namespace FlowersShop.WEB.Models
 {
     public class ClientViewModel
     {
-        public int id_Client { get; set; }
+        public int Id { get; set; }
 
         public string Name { get; set; }
 
@@ -21,7 +21,7 @@ namespace FlowersShop.WEB.Models
 
         public int? Age { get; set; }
 
-        public int? id_City { get; set; }
+        public int? CityId { get; set; }
 
         public CityEntity City { get; set; }
         

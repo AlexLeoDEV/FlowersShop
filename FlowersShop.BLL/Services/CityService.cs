@@ -44,9 +44,9 @@
         {
             Database.Cities.Create(new CityEntity
             {
-                Id = city.CityId,
-                Name = city.Title,
-                Price = city.Price
+                Id = city.Id,
+                Name = city.Name,
+                DeliveryPrice = city.DeliveryPrice
             });
 
             Database.Save();
@@ -62,9 +62,9 @@
         {
             Database.Cities.Update(new CityEntity
             {
-                Id = city.CityId,
-                Name = city.Title,
-                Price = city.Price
+                Id = city.Id,
+                Name = city.Name,
+                DeliveryPrice = city.DeliveryPrice
             });
 
             Database.Save();

@@ -30,9 +30,5 @@
         public const string ORDER_TABLE_NAME = "Orders";
 
         #endregion
-
-        #region foreign keys
-
-        #endregion
     }
 }

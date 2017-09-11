@@ -21,7 +21,7 @@
         {
             Database.Commodities.Create(new CommoditiesEntity
             {
-                Id = commodity.CommodityId,
+                Id = commodity.Id,
                 Name = commodity.Name,
                 Description = commodity.Description,
                 Colour = commodity.Colour,
@@ -81,7 +81,7 @@
         {
             Database.Commodities.Update(new CommoditiesEntity
             {
-                Id = commodity.CommodityId,
+                Id = commodity.Id,
                 Name = commodity.Name,
                 Description = commodity.Description,
                 Colour = commodity.Colour,

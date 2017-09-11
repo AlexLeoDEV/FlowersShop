@@ -69,9 +69,9 @@
     <Compile Include="Context\EF\FlowersShopEntities.cs" />
     <Compile Include="Context\FlowersShopDatabaseInitizlizer.cs" />
     <Compile Include="Context\FlowersShopDatabaseMetadata.cs" />
-    <Compile Include="Context\Migrations\201708311202179_InitialCreate.cs" />
-    <Compile Include="Context\Migrations\201708311202179_InitialCreate.Designer.cs">
-      <DependentUpon>201708311202179_InitialCreate.cs</DependentUpon>
+    <Compile Include="Context\Migrations\201709021554323_InitialCreate.cs" />
+    <Compile Include="Context\Migrations\201709021554323_InitialCreate.Designer.cs">
+      <DependentUpon>201709021554323_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Context\Migrations\SeedDataGenerator.cs" />
     <Compile Include="Entities\CategoryEntity.cs" />
@@ -116,8 +116,8 @@
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Context\Migrations\201708311202179_InitialCreate.resx">
-      <DependentUpon>201708311202179_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Context\Migrations\201709021554323_InitialCreate.resx">
+      <DependentUpon>201709021554323_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

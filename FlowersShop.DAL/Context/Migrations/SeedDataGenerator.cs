@@ -32,11 +32,11 @@
 
             // context.Clients.AddOrUpdate(cl => cl.Name, clients.ToArray());
             // context.SaveChanges();
-            context.Commodities.AddOrUpdate(com => com.Name, commodities.ToArray());
+            context.Commodities.AddOrUpdate(com => com.Id, commodities.ToArray());
             context.SaveChanges();
         }
 
-        #region Debug Data
+        #region categories
 
         private static List<CategoryEntity> GenerateCategories()
         {
@@ -86,6 +86,10 @@
             };
         }
 
+        #endregion
+
+        #region cities
+
         private static List<CityEntity> GenerateCities()
         {
             return new List<CityEntity>
@@ -94,33 +98,37 @@
                 {
                     Id = 1,
                     Name = "Dnipro",
-                    Price = 100
+                    DeliveryPrice = 100
                 },
 
                 new CityEntity
                 {
                     Id = 2,
                     Name = "Kamianske",
-                    Price = 120
+                    DeliveryPrice = 120
                 },
 
                 new CityEntity
                 {
                     Id = 3,
                     Name = "Novomoskovsk",
-                    Price = 120
+                    DeliveryPrice = 120
                 },
 
                 new CityEntity
                 {
                     Id = 4,
                     Name = "Pavlograd",
-                    Price = 150
+                    DeliveryPrice = 150
                 }
             };
         }
 
-        private static List<ClientEntity> GenerateClients()
+        #endregion
+
+        #region clients
+
+        private static IEnumerable<ClientEntity> GenerateClients()
         {
             return new List<ClientEntity>
             {
@@ -133,10 +141,23 @@
                     CityId = 1,
                     Email = "alex123@yahoo.com",
                     Gender = "Male"
+                },
+                new ClientEntity
+                {
+                    Id = 2,
+                    Name = "Kiril",
+                    Age = 24,
+                    CellPhone = "0953354885",
+                    CityId = 2,
+                    Email = "kiril@yahoo.com",
+                    Gender = "Male"
                 }
             };
         }
 
+        #endregion
+
+        #region commodities
         private static List<CommoditiesEntity> GenerateCommodities()
         {
             return new List<CommoditiesEntity>
