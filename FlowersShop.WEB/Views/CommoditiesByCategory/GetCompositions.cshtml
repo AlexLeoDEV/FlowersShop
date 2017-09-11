@@ -1,0 +1,60 @@
+﻿@model IEnumerable<FlowersShop.BLL.DTO.CommoditiesByCategoryDTO>
+
+@{
+    ViewBag.Title = "Compositions";
+}
+
+<h2>Compositions</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(modelItem => modelItem.CommodityDTO.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(modelItem => modelItem.CommodityDTO.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(modelItem => modelItem.CommodityDTO.Preferences)
+        </th>
+        <th>
+            @Html.DisplayNameFor(modelItem => modelItem.CommodityDTO.Price)
+        </th>
+        <th></th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CommodityDTO.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.CommodityDTO.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.CommodityDTO.Preferences)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.CommodityDTO.Price)
+            </td>
+            <td>
+                <a href="@Url.Action("Details", "Commodities", new { id = item.CommodityDTO.id_Commodities })">Details</a>
+            </td>
+            <td>
+                <a href="@Url.Action("Buy", "Order", new { id = item.CommodityDTO.id_Commodities })">Buy</a>
+            </td>
+        </tr>
+    }
+</table>
+<div>
+    @Html.ActionLink("Back to Home", "Index", "Commodities")
+</div>
+
+
+
+
+
+
+

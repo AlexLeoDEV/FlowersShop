@@ -1,0 +1,96 @@
+﻿@using System.Globalization
+@model FlowersShop.WEB.Models.Commodities.CommodityCollectionRefererViewModel
+@{
+    ViewBag.Title = Resources.CommoditiesView.CommoditiesIndexTitle;
+}
+
+<!-- Carousel -->
+@Html.Partial("../Navigation/Carousel")
+
+<div style="margin-top: 7em;">     
+    @using (@Html.BeginForm("Index"))
+    {
+        @Html.Label(Resources.CommoditiesView.SearchTitle)
+        @Html.TextBox("textToSearch", Model.Model.TextToSearch)
+    }
+</div>
+
+<h2>Our Super Prepositions</h2> 
+         
+<div style="display: flex; flex-wrap: wrap; margin-top: 5em;">
+    @foreach (var item in Model.Model.List)
+    {
+        <div class="thumbnail" style="width: 17em;">                
+            <img style="width: 123px; height: 150px" src="@item.ImagePath" alt="commodity" class="img-responsive">
+            <div class="caption">
+                <h4 class="pull-right price">
+                    @Html.ActionLink(item.Price.ToString(CultureInfo.InvariantCulture)+" UAH", "Details", new { id = item.Id, returnUrl = Model.Referer })
+                </h4>
+                <h4 class="title">
+                    @Html.ActionLink(item.Name, "Details", new { id = item.Id, returnUrl = Model.Referer }, new { @class = "title" })
+                </h4>
+                <button class="btn-sm btn-info pull-right" href="@Url.Action("Buy", "Order", new {id = item.Id})">Buy</button>
+            </div>                           
+        </div>
+    }
+</div>
+
+@{
+    int firstPage = 1;
+    int secondPage = 2;
+    int pageBefore = Model.Model.PageNumber - 1;
+    int pageAfter = Model.Model.PageNumber + 1;
+}
+
+<ul class="pagination">
+    
+    @if (Model.Model.PageNumber != firstPage && Model.Model.List.Count != 0)
+    {
+        <li>
+            @Html.ActionLink(firstPage.ToString(), "Index", new {page = (firstPage), textToSearch = Model.Model.TextToSearch})
+        </li>
+    }
+
+    @if (pageBefore > firstPage && Model.Model.List.Count != 0)
+    {
+        <li>
+            @if (pageBefore > secondPage)
+            {
+                <b>...</b>
+            }
+            @Html.ActionLink(pageBefore.ToString(), "Index", new {page = (pageBefore), textToSearch = Model.Model.TextToSearch})
+        </li>
+    }
+
+    @if (Model.Model.List.Count != 0)
+    {
+        <li>
+            <a href="#">@Model.Model.PageNumber</a>
+        </li>
+    }
+
+    @if (pageAfter < Model.Model.NumberOfPages && Model.Model.List.Count != 0)
+    {
+        <li>
+            @Html.ActionLink(pageAfter.ToString(), "Index", new {page = (pageAfter), textToSearch = Model.Model.TextToSearch})
+
+            @if (pageAfter < Model.Model.NumberOfPages - 1)
+            {
+                <b>...</b>
+            }
+        </li>
+    }
+
+    @if (Model.Model.PageNumber != Model.Model.NumberOfPages && Model.Model.List.Count != 0)
+    {
+        <li>
+            @Html.ActionLink(Model.Model.NumberOfPages.ToString(), "Index", new {page = (Model.Model.NumberOfPages), textToSearch = Model.Model.TextToSearch})
+        </li>
+    }
+
+</ul>
+
+@if (Model.Model.List.Count == 0)
+{
+    <p>@Resources.CommoditiesView.NotFoundCommodity</p>
+}

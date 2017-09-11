@@ -1,0 +1,25 @@
+﻿@model FlowersShop.WEB.Models.Commodities.CommodityRefererViewModel
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+
+<div>
+    <h4>Commodities</h4>
+    <hr />
+    @Html.HiddenFor(model => model.Model.Id)    
+    
+    <dl class="dl-horizontal">
+        <dt>
+            Name
+        </dt>
+        <dd>
+            <img style="height: 150px" alt="commodity" src="@Model.Model.ImagePath" />
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to Home", "Index")
+</p>

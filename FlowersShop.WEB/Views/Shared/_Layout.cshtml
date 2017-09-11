@@ -1,0 +1,65 @@
+﻿@using System.Web.UI.WebControls
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+<div id="main-wrapper">
+        <!-- Header with navigation -->
+        @Html.Partial("_Navigation")        
+
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row" style="margin-top: 1em;">
+                    <div class="col-md-2">
+                        <div class="nav navbar-default">
+                            @{ Html.RenderAction("Menu", "Navigation"); }
+                        </div>
+                    </div>
+                    <div class="col-md-10">                    
+                        @RenderBody()    
+                    </div>
+                </div> <!-- /.row -->                
+            </div> <!-- /.container-fluid -->
+        </div> <!-- /#page-wrapper -->
+    </div>  <!-- /#main-wrapper -->
+<hr />
+
+    <footer class="container" style="width: 1330px; background: #EFECDB url(../../Content/Images/Themes/home_content_bg-min.jpg) no-repeat scroll 100% 0%; padding-top: 70px;">
+        <div class="row">
+            <div class="col-md-12">
+                <h3>We are in social!</h3>
+                <div class="row">
+                    <div class="col-md-5">
+                        <div id="footer-social">
+                            <ul class="social">
+                                <li><a href="https://www.facebook.com/"><img src="../../Content/Images/Socials/footer_fb_icon.png" alt="fb"></a></li>
+                                <li><a href="https://twitter.com/"><img src="../../Content/Images/Socials/footer_twitter_icon.png" alt="tw"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <ul id="menu-footer-1-menu">
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Where We Deliver</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <p style="text-align: center;">&copy; @DateTime.Now.Year - Flowers Shop</p>
+            </div>
+        </div> <!--/. row -->
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
