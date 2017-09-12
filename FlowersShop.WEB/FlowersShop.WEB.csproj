@@ -168,6 +168,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CommoditiesView.resx</DependentUpon>
     </Compile>
+    <Compile Include="App_GlobalResources\HomeView.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HomeView.resx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
@@ -284,10 +289,8 @@
     <Content Include="Content\Images\Sliders\img5.jpg" />
     <Content Include="Content\Images\Socials\footer_fb_icon.png" />
     <Content Include="Content\Images\Socials\footer_twitter_icon.png" />
-    <Content Include="Content\Images\Themes\bouquets-for-birthday.jpg" />
     <Content Include="Content\Images\Themes\flower_background_pattern.png" />
     <Content Include="Content\Images\Themes\home_content_bg-min.jpg" />
-    <Content Include="Content\Images\Themes\roses_small.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -382,6 +385,13 @@
     <Content Include="App_GlobalResources\CommoditiesView.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>CommoditiesView.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\HomeView.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>HomeView.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>

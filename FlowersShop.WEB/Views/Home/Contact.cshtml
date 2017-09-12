@@ -1,21 +1,29 @@
 ﻿@{
-    ViewBag.Title = "Contact";
+    ViewBag.Title = Resources.HomeView.OurContactsTitle;
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+<div class="navigation-wrapper">
+    <h2>@ViewBag.Title</h2>
+    <p>
+        Lorem ipsum dolor sit amet, ad labores dissentiet vel,
+        populo quidam forensibus vel id. No facete possim corpora cum,
+        nec at velit graecis recteque. Accusamus disputando cum te,
+        detraxit assentior in sea. Nam inani scribentur cu, persius
+        ceteros ex eum. Eam choro dolor assueverit ei.
+    </p>
+    <address>
+        One Microsoft Way<br />
+        Ukraine, Dnipro, 49000<br />
+        <abbr title="Phone">Phone:</abbr>
+        (056) 790-98-00
+    </address>
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+    <address>
+        <strong>Support:</strong>   <a href="mailto:flowershop_admin@example.com">flowershop_admin@example.com</a><br />
+        <strong>Marketing:</strong> <a href="mailto:flowershop_trade@example.com">flowershop_trade@example.com</a>
+    </address>
 
-<div>
-    @Html.ActionLink("Back to Home", "Index", "Commodities")
+    <div>
+        @Html.ActionLink("Back to Home", "Index", "Commodities")
+    </div>
 </div>

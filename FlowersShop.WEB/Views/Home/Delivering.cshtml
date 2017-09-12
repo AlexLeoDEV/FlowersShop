@@ -1,33 +1,44 @@
 ﻿@model IEnumerable<FlowersShop.WEB.Models.CityViewModel> 
 @{
-    ViewBag.Title = "Delivering";
+    ViewBag.Title = Resources.HomeView.DeliveringByCitiesTitle;
 }
 
-<h2>Delivering by cities</h2>
+<div class="navigation-wrapper">
+    <h2>@ViewBag.Title</h2>
+    <p>
+        Delivery in Ukraine
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(modelItem => modelItem.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(modelItem => modelItem.Price)
-        </th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+        We carry out deliveries across Ukraine within 3 hours of your order payment. 
+        Faster is possible! Contact our managers for more details. As an exception may be 
+        difficult compositions or baskets creating of which may require a little more time 
+        (Nearest delivery time is indicated on each product page). Delivery can be made to the 
+        home address, work address, to the hotel, to the restaurant. Also we can make the 
+        delivery without an address - by the preliminary phone call to the recipient.
+    </p>
+    <br />
+    <table class="table" style="width:60%">
+        <caption><h3>Price list</h3></caption>
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.Price)
-            </td>
+            <th>
+                @Html.DisplayNameFor(modelItem => modelItem.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(modelItem => modelItem.DeliveryPrice)
+            </th>
         </tr>
-    }
-</table>
-
-<div>
-    @Html.ActionLink("Back to Home", "Index", "Commodities")
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.LabelForModel(item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.DeliveryPrice)
+                </td>
+            </tr>
+        }
+    </table>
+    <div>
+        @Html.ActionLink("Back to Home", "Index", "Commodities")
+    </div>
 </div>

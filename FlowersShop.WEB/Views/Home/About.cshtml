@@ -1,21 +1,27 @@
 ﻿@{
-    ViewBag.Title = "About us";
+    ViewBag.Title = Resources.HomeView.AboutUsTitle;
 }
 
-<h2>@ViewBag.Message</h2>
+<div class="navigation-wrapper">
+    <h2>@ViewBag.Title</h2>
 
-
-<p>
-    Flower Shop proudly serves the Dnipro area.
-    We are family owned and operated. We are committed to offering only
-    the finest floral arrangements and gifts, backed by service that is
-    friendly and prompt. Because all of our customers are important,
-    our professional staff is dedicated to making your experience a pleasant one.
-    That is why we always go the extra mile to make your floral gift perfect.
-    We are Dnipro local florist!
-</p>
-
-
-<div>
-    @Html.ActionLink("Back to Home", "Index", "Commodities")
+    <p>
+        Flower Shop proudly serves the Dnipro area.
+        We are family owned and operated. We are committed to offering only
+        the finest floral arrangements and gifts, backed by service that is
+        friendly and prompt. Because all of our customers are important,
+        our professional staff is dedicated to making your experience a pleasant one.
+        That is why we always go the extra mile to make your floral gift perfect.
+        We are Dnipro local florist!
+    </p>
+    <p>
+        Lorem ipsum dolor sit amet, ad labores dissentiet vel,
+        populo quidam forensibus vel id. No facete possim corpora cum,
+        nec at velit graecis recteque. Accusamus disputando cum te,
+        detraxit assentior in sea. Nam inani scribentur cu, persius
+        ceteros ex eum. Eam choro dolor assueverit ei.
+    </p>
+    <div>
+        @Html.ActionLink("Back to Home", "Index", "Commodities")
+    </div>
 </div>

@@ -21,11 +21,11 @@
             string controllerName = (string)Request.RequestContext.RouteData.Values["controller"];
             var items = new List<MenuItemViewModel>
             {
-                new MenuItemViewModel { Name = "Bouquets", Controller = "CommoditiesByCategoryController", Action = "GetBouquets" },
-                new MenuItemViewModel { Name = "Baskets", Controller = "CommoditiesByCategoryController", Action = "GetBaskets" },
-                new MenuItemViewModel { Name = "Mono bouquets", Controller = "CommoditiesByCategoryController", Action = "GetMonoBouquets" },
-                new MenuItemViewModel { Name = "Compositions", Controller = "CommoditiesByCategoryController", Action = "GetCompositions" },
-                new MenuItemViewModel { Name = "Dream Bouquet", Controller = "CommoditiesByCategoryController", Action = "GetDreamBouquet" }
+                new MenuItemViewModel { Name = "Bouquets", Controller = "CommoditiesByCategory", Action = "GetBouquets" },
+                new MenuItemViewModel { Name = "Baskets", Controller = "CommoditiesByCategory", Action = "GetBaskets" },
+                new MenuItemViewModel { Name = "Mono bouquets", Controller = "CommoditiesByCategory", Action = "GetMonoBouquets" },
+                new MenuItemViewModel { Name = "Compositions", Controller = "CommoditiesByCategory", Action = "GetCompositions" },
+                new MenuItemViewModel { Name = "Dream Bouquet", Controller = "CommoditiesByCategory", Action = "GetDreamBouquet" }
             };
 
             var queryableItems = items.AsQueryable();

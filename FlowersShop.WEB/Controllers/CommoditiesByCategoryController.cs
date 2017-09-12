@@ -1,58 +1,64 @@
 ﻿namespace FlowersShop.WEB.Controllers
 {
-    using FlowersShop.BLL.DTO;
-    using FlowersShop.BLL.Interfaces;
-    using FlowersShop.WEB.Models;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web;
     using System.Web.Mvc;
+    using AutoMapper;
+    using FlowersShop.BLL.DTO;
+    using FlowersShop.BLL.Interfaces;
+    using FlowersShop.WEB.Models;
 
     /// <summary>
     /// 
     /// </summary>
     public class CommoditiesByCategoryController : Controller
     {
-        ICommoditiesByCategory commoditiesByCategory;
+        private readonly ICommoditiesByCategory _commoditiesByCategory;
 
-
-        public CommoditiesByCategoryController(ICommoditiesByCategory cbc)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="commoditiesByCategory"></param>
+        public CommoditiesByCategoryController(ICommoditiesByCategory commoditiesByCategory)
         {
-            commoditiesByCategory = cbc;
+            _commoditiesByCategory = commoditiesByCategory;
         }
 
         public ActionResult GetBouquets()
         {
-            IEnumerable<CommoditiesByCategoryDto> commodByCatDtos = commoditiesByCategory.GetBouquets();            
+            var commoditiesByCategoryDto = _commoditiesByCategory.GetBouquets();
+            Mapper.Initialize(cfg => cfg.CreateMap<CommoditiesByCategoryDto, CommodityViewModel>());
+            var commoditiesByCategoryList = Mapper.Map<IEnumerable<CommoditiesByCategoryDto>, List<CommodityViewModel>>(commoditiesByCategoryDto);
 
-            return View(commodByCatDtos);
+            return View(commoditiesByCategoryList);
         }
 
         public ActionResult GetBaskets()
         {
-            IEnumerable<CommoditiesByCategoryDto> commodByCatDtos = commoditiesByCategory.GetBaskets();
+            IEnumerable<CommoditiesByCategoryDto> commodByCatDtos = _commoditiesByCategory.GetBaskets();
 
             return View(commodByCatDtos);
         }
 
         public ActionResult GetMonoBouquets()
         {
-            IEnumerable<CommoditiesByCategoryDto> commodByCatDtos = commoditiesByCategory.GetMonoBouquets();
+            IEnumerable<CommoditiesByCategoryDto> commodByCatDtos = _commoditiesByCategory.GetMonoBouquets();
 
             return View(commodByCatDtos);
         }
 
         public ActionResult GetCompositions()
         {
-            IEnumerable<CommoditiesByCategoryDto> commodByCatDtos = commoditiesByCategory.GetCompositions();
+            IEnumerable<CommoditiesByCategoryDto> commodByCatDtos = _commoditiesByCategory.GetCompositions();
 
             return View(commodByCatDtos);
         }
 
         public ActionResult GetDreamBouquet()
         {
-            IEnumerable<CommoditiesByCategoryDto> commodByCatDtos = commoditiesByCategory.GetDreamBouquet();
+            IEnumerable<CommoditiesByCategoryDto> commodByCatDtos = _commoditiesByCategory.GetDreamBouquet();
 
             return View(commodByCatDtos);
         }

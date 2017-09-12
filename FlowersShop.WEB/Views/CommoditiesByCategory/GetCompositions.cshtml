@@ -1,24 +1,23 @@
-﻿@model IEnumerable<FlowersShop.BLL.DTO.CommoditiesByCategoryDTO>
-
+﻿@model IEnumerable<FlowersShop.WEB.Models.CommodityViewModel>
 @{
     ViewBag.Title = "Compositions";
 }
 
-<h2>Compositions</h2>
+<h2>@ViewBag.Title</h2>
 
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(modelItem => modelItem.CommodityDTO.Title)
+            @Html.DisplayNameFor(modelItem => modelItem.Name)
         </th>
         <th>
-            @Html.DisplayNameFor(modelItem => modelItem.CommodityDTO.Description)
+            @Html.DisplayNameFor(modelItem => modelItem.Description)
         </th>
         <th>
-            @Html.DisplayNameFor(modelItem => modelItem.CommodityDTO.Preferences)
+            @Html.DisplayNameFor(modelItem => modelItem.Preferences)
         </th>
         <th>
-            @Html.DisplayNameFor(modelItem => modelItem.CommodityDTO.Price)
+            @Html.DisplayNameFor(modelItem => modelItem.Price)
         </th>
         <th></th>
         <th></th>
@@ -28,22 +27,21 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.CommodityDTO.Title)
+                @item.Name
             </td>
             <td>
-                @Html.DisplayFor(model => item.CommodityDTO.Description)
+                @item.Description
             </td>
             <td>
-                @Html.DisplayFor(model => item.CommodityDTO.Preferences)
+                @item.Preferences
             </td>
             <td>
-                @Html.DisplayFor(model => item.CommodityDTO.Price)
+                @item.Price
+            <td>
+                <a href="@Url.Action("Details", "Commodities", new { id = item.Id })">Details</a>
             </td>
             <td>
-                <a href="@Url.Action("Details", "Commodities", new { id = item.CommodityDTO.id_Commodities })">Details</a>
-            </td>
-            <td>
-                <a href="@Url.Action("Buy", "Order", new { id = item.CommodityDTO.id_Commodities })">Buy</a>
+                <a href="@Url.Action("Buy", "Order", new { id = item.Id })">Buy</a>
             </td>
         </tr>
     }
