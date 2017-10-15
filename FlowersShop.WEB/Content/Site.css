@@ -1,6 +1,35 @@
-﻿body, html {
+﻿@font-face {
+    font-family: BebasNeue;
+    src: url('../fonts/bebasneue_regular.eot');
+    src: url('../fonts/bebasneue_regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../fonts/bebasneue_regular.woff2') format('woff2'), /* Super Modern Browsers */
+    url('../fonts/bebasneue_regular.woff') format('woff'), /* Pretty Modern Browsers */
+    url('../fonts/bebasneue_regular.ttf') format('truetype'), /* Safari, Android, iOS */
+    url('../fonts/bebasneue_regular.svg#svgFontName') format('svg'); /* IE9 Compat Modes */
+    /* Legacy iOS */
+}
+
+@font-face {
+    font-family: HelveticaCustom;
+    src: url('../fonts/helveticaneuecyr-medium.eot');
+    src: url('../fonts/helveticaneuecyr-medium.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../fonts/helveticaneuecyr-medium.woff2') format('woff2'), /* Super Modern Browsers */
+    url('../fonts/helveticaneuecyr-medium.woff') format('woff'), /* Pretty Modern Browsers */
+    url('../fonts/helveticaneuecyr-medium.ttf') format('truetype'), /* Safari, Android, iOS */
+    url('../fonts/helveticaneuecyr-medium.svg#svgFontName') format('svg'); /* IE9 Compat Modes */
+    /* Legacy iOS */
+}
+
+* {
+    outline: none !important;
+}
+
+body, html {
     height: 100%;
-    /*background: url(../Content/Images/Themes/flower_background_pattern.png) 0 0 repeat;*/
+}
+
+a {
+    text-decoration: none !important;
 }
 
 .navigation-wrapper {
