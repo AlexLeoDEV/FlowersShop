@@ -1,6 +1,13 @@
-﻿body, html {
+﻿* {
+    outline: none !important;
+}
+
+body, html {
     height: 100%;
-    /*background: url(../Content/Images/Themes/flower_background_pattern.png) 0 0 repeat;*/
+}
+
+a {
+    text-decoration: none !important;
 }
 
 .navigation-wrapper {
